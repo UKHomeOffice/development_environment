@@ -1,0 +1,10 @@
+---
+- name: Fetch kubectl
+  get_url: 
+    url: {{ kubectl_download_url }}{{ kubectl_version }}/bin/linux/amd64/kubectl
+    checksum: {{ kubectl_checksum }}
+    dest: /usr/local/bin/kubectl
+    mode: 0755
+    owner: root
+    group: root
+  become: true

@@ -1,0 +1,12 @@
+---
+- name: Update all packages to latest versions
+  apt:
+    upgrade: dist
+    update_cache: yes
+
+- name: Install Generic Packages
+  apt:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - virtualbox-ext-pack
