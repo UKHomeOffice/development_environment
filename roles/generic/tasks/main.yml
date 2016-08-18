@@ -1,10 +1,116 @@
 ---
-- name: Update all packages to latest versions
+- name: Update Yum Packages
+  yum:
+    update_cache: yes
+    name: "*"
+    state: latest
+  when: ansible_os_family | lower == 'redhat'
+
+- name: Update all packages to latest versions - CentOS
   apt:
     upgrade: dist
     update_cache: yes
+  when: ansible_os_family | lower == 'debian'
 
-- name: Install Generic Packages
+- name: Install Generic Pre Reqs - RedHat
+  yum:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - curl
+
+
+- name: Install Generic Pre Reqs - RedHat
+  yum:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - acpid
+    - audit
+    - bzip2
+    - coreutils
+    - crontabs
+    - dhclient
+    - dmidecode
+    - dos2unix
+    - dstat
+    - e2fsprogs
+    - groff
+    - grub
+    - hdparm
+    - htop
+    - iftop
+    - iotop
+    - iputils
+    - jq
+    - irqbalance
+    - kernel-headers
+    - logrotate
+    - lsof
+    - ltrace
+    - lvm2
+    - lynx
+    - man
+    - man-pages
+    - nc
+    - ntp
+    - ntpdate
+    - openssh
+    - openssh-clients
+    - openssh-server
+    - openssl-devel
+    - parted
+    - pciutils
+    - perl
+    - python
+    - python-pip
+    - python-httplib2
+    - rcs
+    - readline-devel
+    - redhat-lsb
+    - rng-tools
+    - rsync
+    - screen
+    - sudo
+    - setransd
+    - strace
+    - sysstat
+    - tar
+    - tcpdump
+    - tcl
+    - tk
+    - tmpwatch
+    - tree
+    - tuned
+    - unzip
+    - wget
+    - which
+    - vim-common
+    - vim-enhanced
+    - yum-plugin-changelog
+    - yum-plugin-downloadonly
+    - yum-plugin-ps
+    - yum-utils
+    - zip
+    - zlib-devel
+  when: ansible_os_family | lower == 'redhat'
+
+- name: Install Generic Pre Reqs
+  yum:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - pam_passwdqc
+  when: ansible_os_family | lower == 'redhat' and ansible_distribution_version <= '6.8'
+
+- name: Remove conflicting Packages
+  yum:
+    name: "{{ item }}"
+    state: absent
+  with_items:
+    - nfs-utils
+
+- name: Install Generic Packages - Ubuntu
   apt:
     name: "{{ item }}"
     state: latest

@@ -3,3 +3,7 @@
   gather_facts: yes
   roles:
     - { role: generic }
+    - { role: minikube }
+    - { role: kubectl }
+    - { role: docker_images }
+    - { role: clamav }
