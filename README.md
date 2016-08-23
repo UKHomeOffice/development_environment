@@ -7,17 +7,13 @@ All modules included here should work as a minimum under xfce4 with either an Ub
 
 ## Bits on the list to add
 
+* Grub Cmdline hardening Tweaks - needs ubuntu adding to upstream role
 * blackbox - Stackexchange
-* os-hardening
-* ssh-hardening
 * JDK
 * SeLinux/AppArmor
 * Jenkins / Drone
 * Jmeter
-* Grub Cmdline hardening Tweaks
-* Desktop hardening Tweaks
 * DNSMasq ? Docker
 * FireFox / Google Chrome
-* IPTables
 * OpenVPN
 * ntp

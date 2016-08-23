@@ -3,6 +3,14 @@
   version: 3.1.0
   name: os-hardening
 
-- src: https://github.com/dev-sec/ansible-ssh-hardening
-  version: 3.1.0
+- src: https://github.com/KEAOSolutions/ansible-ssh-hardening
+  version: 3.1.0.1
   name: ssh-hardening
+
+- src: https://github.com/mikegleasonjr/ansible-role-firewall
+  version: 0.2.2
+  name: iptables
+
+- src: https://github.com/KEAOSolutions/ansible-grub_cmdline.git
+  version: master
+  name: grub-cmdline
