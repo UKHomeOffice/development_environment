@@ -7,3 +7,5 @@
     - { role: kubectl }
     - { role: docker_images }
     - { role: clamav }
+    - { role: os-hardening }
+    - { role: ssh-hardening }
