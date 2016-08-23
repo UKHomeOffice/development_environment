@@ -8,7 +8,7 @@
   name: ssh-hardening
 
 - src: https://github.com/mikegleasonjr/ansible-role-firewall
-  version: 0.2.2
+  version: 0.2.0
   name: iptables
 
 - src: https://github.com/KEAOSolutions/ansible-grub_cmdline.git
