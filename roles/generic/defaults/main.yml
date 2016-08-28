@@ -25,11 +25,15 @@ generic_packages:
   - parted
   - pciutils
   - perl
+  - policycoreutils
   - rcs
   - rng-tools
   - rsync
   - screen
   - sudo
+  - sssd
+  - sssd-tools
+  - sssd-common
   - strace
   - sysstat
   - tar
@@ -87,8 +91,3 @@ ubuntu_packages:
   - vim-scripts
   - zlib1g-dev
   - virtualbox-ext-pack
-
-sssd
-sssd-tools
-sssd-common
-policycoreutils (selinux)
