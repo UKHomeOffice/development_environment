@@ -1,18 +1,18 @@
 ---
-- name: Update Yum Packages
+- name: Update Yum Packages - RedHat
   yum:
     update_cache: yes
     name: "*"
     state: latest
   when: ansible_os_family | lower == 'redhat'
 
-- name: Update all packages to latest versions - CentOS
+- name: Update Apt Packages - Debian
   apt:
     upgrade: dist
     update_cache: yes
   when: ansible_os_family | lower == 'debian'
 
-- name: Install Generic Pre Reqs  CentOS
+- name: Install Generic Pre Reqs - RedHat
   yum:
     name: "{{ item }}"
     state: latest
@@ -20,7 +20,7 @@
     - "{{ generic_packages }}"
   when: ansible_os_family | lower == 'redhat'
 
-- name: Install Generic Pre Reqs  Debian
+- name: Install Generic Pre Reqs - Debian
   apt:
     name: "{{ item }}"
     state: latest
@@ -44,16 +44,20 @@
     - "{{ redhat_packages_6 }}"
   when: ansible_os_family | lower == 'redhat' and ansible_distribution_version <= '6.8'
 
-- name: Remove conflicting Packages RedHat
+- name: Remove conflicting Packages - RedHat
   yum:
     name: "{{ item }}"
     state: absent
   with_items:
     - "{{ redhat_packages_conflicting_remove }}"
+  when: ansible_os_family | lower == 'redhat'
 
-- name: Install Generic Packages - Ubuntu
+- name: Install Generic Packages - Debian
   apt:
     name: "{{ item }}"
     state: latest
   with_items:
     - "{{ ubuntu_packages }}"
+  when: ansible_os_family | lower == 'debian'
+
+- debug: msg="Generic Package installation Complete"

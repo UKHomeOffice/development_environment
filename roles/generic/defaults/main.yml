@@ -9,6 +9,7 @@ generic_packages:
   - dstat
   - e2fsprogs
   - groff
+  - grub2
   - hdparm
   - htop
   - iftop
@@ -48,7 +49,6 @@ generic_packages:
 
 redhat_packages:
   - dhclient
-  - grub
   - iputils
   - kernel-headers
   - man
@@ -80,7 +80,6 @@ redhat_packages_conflicting_remove:
 
 ubuntu_packages:
   - auditd
-  - grub2
   - kernel-package
   - libreadline-dev
   - netcat
