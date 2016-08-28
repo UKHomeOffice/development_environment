@@ -17,14 +17,14 @@
     name: "{{ item }}"
     state: latest
   with_items:
-    - {{ generic_packages }}
+    - "{{ generic_packages }}"
 
 - name: Install Generic Pre Reqs - RedHat
   yum:
     name: "{{ item }}"
     state: latest
   with_items:
-    - {{ redhat_packages }}
+    - "{{ redhat_packages }}"
   when: ansible_os_family | lower == 'redhat'
 
 - name: Install Generic Pre Reqs - RedHat6
@@ -32,7 +32,7 @@
     name: "{{ item }}"
     state: latest
   with_items:
-    - {{ redhat_packages_6 }}
+    - "{{ redhat_packages_6 }}"
   when: ansible_os_family | lower == 'redhat' and ansible_distribution_version <= '6.8'
 
 - name: Remove conflicting Packages RedHat
@@ -40,11 +40,11 @@
     name: "{{ item }}"
     state: absent
   with_items:
-    - {{ redhat_packages_conflicting_remove }}
+    - "{{ redhat_packages_conflicting_remove }}"
 
 - name: Install Generic Packages - Ubuntu
   apt:
     name: "{{ item }}"
     state: latest
   with_items:
-    - {{ ubuntu_packages }}
+    - "{{ ubuntu_packages }}"

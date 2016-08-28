@@ -1,8 +1,8 @@
 ---
 - name: Fetch minikube
   get_url: 
-    url: {{ minikube_download_url }}{{ minikube_version }}/minikube-linux-amd64
-    checksum: {{ minikube_checksum }}
+    url: "{{ minikube_download_url }}{{ minikube_version }}/minikube-linux-amd64"
+    checksum: "{{ minikube_checksum }}"
     dest: /usr/local/bin/minikube
     mode: 0755
     owner: root
