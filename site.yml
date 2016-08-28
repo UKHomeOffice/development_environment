@@ -5,8 +5,8 @@
     - vars.yml
   roles:
     - { role: generic }
-    - { role: minikube }
     - { role: kubectl }
+    - { role: minikube }
     - { role: os-hardening }
     - { role: ssh-hardening }
     - { role: iptables }
