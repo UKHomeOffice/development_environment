@@ -27,7 +27,10 @@ fi
 cd development_environment
 git clean -fxd
 git reset --hard
-git checkout develop
+
+TAG=${TAG:-$(git tag | tail -n 1)}
+echo "Running with Tag: ${TAG}"
+git checkout ${TAG}
 git pull
 ansible-galaxy install -r requirements.yml
 
