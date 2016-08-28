@@ -12,107 +12,39 @@
     update_cache: yes
   when: ansible_os_family | lower == 'debian'
 
+- name: Install Generic Pre Reqs 
+  yum:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - {{ generic_packages }}
+
 - name: Install Generic Pre Reqs - RedHat
   yum:
     name: "{{ item }}"
     state: latest
   with_items:
-    - curl
-
-
-- name: Install Generic Pre Reqs - RedHat
-  yum:
-    name: "{{ item }}"
-    state: latest
-  with_items:
-    - acpid
-    - audit
-    - bzip2
-    - coreutils
-    - crontabs
-    - dhclient
-    - dmidecode
-    - dos2unix
-    - dstat
-    - e2fsprogs
-    - groff
-    - grub
-    - hdparm
-    - htop
-    - iftop
-    - iotop
-    - iputils
-    - jq
-    - irqbalance
-    - kernel-headers
-    - logrotate
-    - lsof
-    - ltrace
-    - lvm2
-    - lynx
-    - man
-    - man-pages
-    - nc
-    - ntp
-    - ntpdate
-    - openssh
-    - openssh-clients
-    - openssh-server
-    - openssl-devel
-    - parted
-    - pciutils
-    - perl
-    - python
-    - python-pip
-    - python-httplib2
-    - rcs
-    - readline-devel
-    - redhat-lsb
-    - rng-tools
-    - rsync
-    - screen
-    - sudo
-    - setransd
-    - strace
-    - sysstat
-    - tar
-    - tcpdump
-    - tcl
-    - tk
-    - tmpwatch
-    - tree
-    - tuned
-    - unzip
-    - wget
-    - which
-    - vim-common
-    - vim-enhanced
-    - yum-plugin-changelog
-    - yum-plugin-downloadonly
-    - yum-plugin-ps
-    - yum-utils
-    - zip
-    - zlib-devel
+    - {{ redhat_packages }}
   when: ansible_os_family | lower == 'redhat'
 
-- name: Install Generic Pre Reqs
+- name: Install Generic Pre Reqs - RedHat6
   yum:
     name: "{{ item }}"
     state: latest
   with_items:
-    - pam_passwdqc
+    - {{ redhat_packages_6 }}
   when: ansible_os_family | lower == 'redhat' and ansible_distribution_version <= '6.8'
 
-- name: Remove conflicting Packages
+- name: Remove conflicting Packages RedHat
   yum:
     name: "{{ item }}"
     state: absent
   with_items:
-    - nfs-utils
+    - {{ redhat_packages_conflicting_remove }}
 
 - name: Install Generic Packages - Ubuntu
   apt:
     name: "{{ item }}"
     state: latest
   with_items:
-    - virtualbox-ext-pack
+    - {{ ubuntu_packages }}

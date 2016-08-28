@@ -1,7 +1,4 @@
 ---
 - name: Pull docker kb8or image
   docker_image:
-    name: "{{ item }}"
-    with_items: 
-      - "quay.io/ukhomeofficedigital/kb8or"
-      - "quay.io/ukhomeofficedigital/toolbox:v0.0.1"
+    name: "quay.io/ukhomeofficedigital/kb8or"
