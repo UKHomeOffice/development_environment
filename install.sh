@@ -34,6 +34,6 @@ git checkout ${TAG}
 git pull
 ansible-galaxy install -r requirements.yml
 
-#ansible-playbook -i hostfile -v site.yml
+ansible-playbook -i hostfile -v site.yml
 
-#exit
+exit
