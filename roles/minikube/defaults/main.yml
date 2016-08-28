@@ -1,4 +1,4 @@
 ---
 minikube_version: 0.7.1
-minikube_checksum: 461c09753505e8c06a55b59633abbaa4daa89190374e4c737fe4d4d1107b9f1b
+minikube_checksum: "sha254:461c09753505e8c06a55b59633abbaa4daa89190374e4c737fe4d4d1107b9f1b"
 minikube_download_url: http://storage.googleapis.com/minikube/releases/v
