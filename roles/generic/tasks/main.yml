@@ -21,7 +21,7 @@
   when: ansible_os_family | lower == 'redhat'
 
 - name: Install Generic Pre Reqs  Debian
-  yum:
+  apt:
     name: "{{ item }}"
     state: latest
   with_items:
