@@ -17,3 +17,22 @@ All modules included here should work as a minimum under xfce4 with either an Ub
 * FireFox / Google Chrome
 * OpenVPN
 * ntp
+
+
+## Usage
+
+### Production
+
+To bootstrap this job please run:
+
+```
+curl https://raw.githubusercontent.com/KEAOSolutions/development_environment/develop/install.sh | bash
+```
+
+### Development
+
+This will install the latest tagged release, if you are developing and need a development version (not to be used on live machines but within Vagrant or test boxes) then you can run the following to pull and built the lastest development release:
+
+```
+curl https://raw.githubusercontent.com/KEAOSolutions/development_environment/develop/install.sh | TAG=develop bash
+```
