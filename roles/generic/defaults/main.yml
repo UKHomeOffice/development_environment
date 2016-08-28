@@ -23,6 +23,7 @@ generic_packages:
   - ntp
   - ntpdate
   - openssh-server
+  - openvpn
   - parted
   - pciutils
   - perl
@@ -40,6 +41,7 @@ generic_packages:
   - tar
   - tcpdump
   - tcl
+  - terminator
   - tk
   - tree
   - unzip
@@ -79,6 +81,8 @@ redhat_packages_conflicting_remove:
   - nfs-utils
 
 ubuntu_packages:
+  - apparmor-profiles
+  - apparmor-utils
   - auditd
   - kernel-package
   - libreadline-dev
@@ -89,4 +93,3 @@ ubuntu_packages:
   - python3-httplib2
   - vim-scripts
   - zlib1g-dev
-  - virtualbox-ext-pack

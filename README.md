@@ -17,6 +17,7 @@ All modules included here should work as a minimum under xfce4 with either an Ub
 * FireFox / Google Chrome
 * OpenVPN
 * ntp
+* packer / virtualbox / vagrant
 
 
 ## Usage
