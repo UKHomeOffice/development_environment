@@ -12,12 +12,21 @@
     update_cache: yes
   when: ansible_os_family | lower == 'debian'
 
-- name: Install Generic Pre Reqs 
+- name: Install Generic Pre Reqs  CentOS
   yum:
     name: "{{ item }}"
     state: latest
   with_items:
     - "{{ generic_packages }}"
+  when: ansible_os_family | lower == 'redhat'
+
+- name: Install Generic Pre Reqs  Debian
+  yum:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - "{{ generic_packages }}"
+  when: ansible_os_family | lower == 'debian'
 
 - name: Install Generic Pre Reqs - RedHat
   yum:

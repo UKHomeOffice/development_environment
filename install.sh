@@ -28,6 +28,7 @@ cd development_environment
 git clean -fxd
 git reset --hard
 git checkout develop
+git pull
 ansible-galaxy install -r requirements.yml
 
 #ansible-playbook -i hostfile -v site.yml
