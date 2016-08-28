@@ -27,7 +27,7 @@ All modules included here should work as a minimum under xfce4 with either an Ub
 To bootstrap this job please run:
 
 ```
-curl https://raw.githubusercontent.com/KEAOSolutions/development_environment/develop/install.sh | bash
+curl https://raw.githubusercontent.com/KEAOSolutions/development_environment/master/install.sh | bash
 ```
 
 ### Development
