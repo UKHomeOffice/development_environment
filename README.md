@@ -18,6 +18,9 @@ All modules included here should work as a minimum under xfce4 with either an Ub
 * OpenVPN
 * ntp
 * packer / virtualbox / vagrant
+* aide - filesystem monitoring
+
+?? how to require a password for debian single user mode and disable interactive boot mode
 
 
 ## Usage

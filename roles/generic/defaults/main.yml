@@ -9,7 +9,6 @@ generic_packages:
   - dstat
   - e2fsprogs
   - groff
-  - grub2
   - hdparm
   - htop
   - iftop
@@ -80,10 +79,9 @@ redhat_packages_6:
 redhat_packages_conflicting_remove:
   - nfs-utils
 
-ubuntu_packages:
+debian_packages:
   - apparmor-profiles
   - apparmor-utils
-  - auditd
   - kernel-package
   - libreadline-dev
   - netcat

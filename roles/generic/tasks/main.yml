@@ -57,7 +57,7 @@
     name: "{{ item }}"
     state: latest
   with_items:
-    - "{{ ubuntu_packages }}"
+    - "{{ debian_packages }}"
   when: ansible_os_family | lower == 'debian'
 
 - debug: msg="Generic Package installation Complete"
