@@ -91,3 +91,4 @@ debian_packages:
   - python3-httplib2
   - vim-scripts
   - zlib1g-dev
+  - ubuntu-restricted-extras
