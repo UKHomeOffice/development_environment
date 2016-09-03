@@ -16,7 +16,7 @@
   name: docker
 
 - src: https://github.com/KEAOSolutions/ansible-virtualbox
-  version: 0.0.1
+  version: v1.0.1
   name: virtualbox
 
 - src: https://github.com/mikegleasonjr/ansible-role-firewall
