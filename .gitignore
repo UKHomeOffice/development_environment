@@ -2,3 +2,6 @@ roles/os-hardening
 roles/ssh-hardening
 roles/iptables
 roles/grub-cmdline
+roles/audit-hardening
+roles/virtualbox
+roles/docker

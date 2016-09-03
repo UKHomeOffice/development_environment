@@ -4,17 +4,25 @@
   name: audit-hardening
 
 - src: https://github.com/KEAOSolutions/ansible-os-hardening
-  version: 3.1.0.3
+  version: 3.1.0.4
   name: os-hardening
 
 - src: https://github.com/KEAOSolutions/ansible-ssh-hardening
   version: 3.1.0.1
   name: ssh-hardening
 
+- src: https://github.com/KEAOSolutions/ansible-docker
+  version: 0.0.1
+  name: docker
+
+- src: https://github.com/KEAOSolutions/ansible-virtualbox
+  version: 0.0.1
+  name: virtualbox
+
 - src: https://github.com/mikegleasonjr/ansible-role-firewall
   version: 0.2.0
   name: iptables
 
 - src: https://github.com/KEAOSolutions/ansible-grub_cmdline.git
-  version: master
+  version: v1.0.1
   name: grub-cmdline
