@@ -21,7 +21,7 @@ cd /opt/GIT
 
 if [ ! -d development_environment ]
 then
-  git clone https://github.com/KEAOSolutions/development_environment.git development_environment
+  git clone https://github.com/UKHomeOffice/development_environment.git development_environment
 fi
 
 cd development_environment
