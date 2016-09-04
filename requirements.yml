@@ -4,7 +4,7 @@
   name: audit-hardening
 
 - src: https://github.com/KEAOSolutions/ansible-os-hardening
-  version: 3.1.0.4
+  version: 3.1.0.5
   name: os-hardening
 
 - src: https://github.com/KEAOSolutions/ansible-ssh-hardening
@@ -12,7 +12,7 @@
   name: ssh-hardening
 
 - src: https://github.com/KEAOSolutions/ansible-docker
-  version: 0.0.1
+  version: 0.0.2
   name: docker
 
 - src: https://github.com/KEAOSolutions/ansible-virtualbox
