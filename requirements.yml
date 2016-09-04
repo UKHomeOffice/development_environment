@@ -1,6 +1,6 @@
 ---
 - src: https://github.com/KEAOSolutions/ansible-audit-hardening.git
-  version: master
+  version: 0.0.1
   name: audit-hardening
 
 - src: https://github.com/KEAOSolutions/ansible-os-hardening
