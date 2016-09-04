@@ -5,3 +5,4 @@ roles/grub-cmdline
 roles/audit-hardening
 roles/virtualbox
 roles/docker
+roles/clamav
