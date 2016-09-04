@@ -1,4 +1,13 @@
 ---
 - name: Pull docker toolbox image
   docker_image:
-    name: "quay.io/ukhomeofficedigital/toolbox:{{ version }}"
+    name: "quay.io/ukhomeofficedigital/toolbox"
+    tag: "{{ version }}"
+
+- name: create toolbox command
+  template:
+    src: toolbox.j2
+    dest: /usr/local/bin/toolbox
+    owner: root
+    group: root
+    mode: 0755

@@ -5,15 +5,17 @@
     - vars.yml
   roles:
     - { role: generic }
-    - { role: kubectl }
-    - { role: minikube }
     - { role: os-hardening,
         os_desktop_enable: true,
         os_security_packages_list: ['xinetd','inetd','ypserv','telnet-server','rsh-server'] }
     - { role: ssh-hardening }
     - { role: iptables }
+    - { role: grub-cmdline }
     - { role: audit-hardening }
-
-#    - { role: grub-cmdline }
-#    - { role: docker_images }
-#    - { role: toolbox }
+    - { role: docker }
+    - { role: minikube }
+    - { role: kubectl }
+    - { role: docker_images }
+    - { role: toolbox }
+    - { role: virtualbox }
+    - { role: clamav }
