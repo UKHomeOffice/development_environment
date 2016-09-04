@@ -5,7 +5,7 @@ OS=$(cat /etc/os-release|sed -e 's/"//'|grep ID_LIKE|awk -F '=' '{print $2}'|awk
 
 if [ ${OS} == "debian" ]
 then
-  apt-get -y install python-pip git libssl-dev
+  apt-get -y install python-pip git libssl-dev libffi-dev
 fi
 
 if [ ${OS} == "rhel" ]
@@ -16,8 +16,8 @@ fi
 
 pip install --upgrade pip setuptools ansible
 
-mkdir -p ~/GIT
-cd ~/GIT
+mkdir -p /opt/GIT
+cd /opt/GIT
 
 if [ ! -d development_environment ]
 then

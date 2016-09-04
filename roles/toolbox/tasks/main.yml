@@ -4,6 +4,7 @@
     name: "quay.io/ukhomeofficedigital/toolbox:{{ version }}"
 
 - name: create toolbox command
+  template:
     src: toolbox.j2
     dest: /usr/local/bin/toolbox
     owner: root
