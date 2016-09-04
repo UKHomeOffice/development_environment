@@ -18,3 +18,4 @@
     - { role: docker_images }
     - { role: toolbox }
     - { role: virtualbox }
+    - { role: clamav }
