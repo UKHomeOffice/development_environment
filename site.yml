@@ -10,11 +10,11 @@
         os_security_packages_list: ['xinetd','inetd','ypserv','telnet-server','rsh-server'] }
     - { role: ssh-hardening }
     - { role: iptables }
+    - { role: grub-cmdline }
     - { role: audit-hardening }
     - { role: docker }
-    - { role: kubectl }
     - { role: minikube }
-#    - { role: docker_images }
-#    - { role: toolbox }
+    - { role: kubectl }
+    - { role: docker_images }
+    - { role: toolbox }
 
-#    - { role: grub-cmdline }

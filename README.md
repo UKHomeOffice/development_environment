@@ -7,15 +7,8 @@ All modules included here should work as a minimum under xfce4 with either an Ub
 
 ## Bits on the list to add
 
-* Grub Cmdline hardening Tweaks - needs ubuntu adding to upstream role
 * blackbox - Stackexchange
-* JDK
-* Jenkins
-* Jmeter
 * DNSMasq 
-* Google Chrome
-* ntp
-* packer / vagrant
 * aide - filesystem monitoring
 
 ?? how to require a password for debian single user mode and disable interactive boot mode
