@@ -84,6 +84,7 @@ debian_packages:
   - python3-pip
   - python3-httplib2
   - systemd-container
-  - vim-scripts
-  - zlib1g-dev
   - ubuntu-restricted-extras
+  - vim-scripts
+  - virtualenv
+  - zlib1g-dev
