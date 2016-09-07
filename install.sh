@@ -25,13 +25,14 @@ then
 fi
 
 cd development_environment
+git fetch
 git clean -fxd
 git reset --hard
 
 TAG=${TAG:-$(git tag | tail -n 1)}
 echo "Running with Tag: ${TAG}"
 git checkout ${TAG}
-git pull
+
 ansible-galaxy install -r requirements.yml
 
 ansible-playbook -i hostfile -v site.yml
