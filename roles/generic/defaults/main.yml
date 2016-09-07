@@ -76,6 +76,7 @@ redhat_packages_conflicting_remove:
 debian_packages:
   - apparmor-profiles
   - apparmor-utils
+  - bash-completion
   - kernel-package
   - libreadline-dev
   - netcat

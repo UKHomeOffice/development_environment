@@ -60,4 +60,28 @@
     - "{{ debian_packages }}"
   when: ansible_os_family | lower == 'debian'
 
+- name: Fix bash_completion grub
+  copy:
+    src: grub
+    dest: /etc/bash_completion.d/grub
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Fix bash_completion desktop-file-validate
+  copy:
+    src: grub
+    dest: /etc/bash_completion.d/desktop-file-validate
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Fix bash_completion insserv
+  copy:
+    src: grub
+    dest: /etc/bash_completion.d/insserv
+    owner: root
+    group: root
+    mode: 0644
+
 - debug: msg="Generic Package installation Complete"
