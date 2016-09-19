@@ -6,12 +6,14 @@ OS=$(cat /etc/os-release|sed -e 's/"//'|grep ID_LIKE|awk -F '=' '{print $2}'|awk
 if [ ${OS} == "debian" ]
 then
   apt-get -y install python-pip git libssl-dev libffi-dev
+  pip install 'docker-py==1.9.0'
 fi
 
 if [ ${OS} == "rhel" ]
 then
   yum install -y epel-release 
   yum install -y git python-pip gcc-c++ openssl-devel python-devel
+  pip install 'docker-py==1.9.0'
 fi
 
 pip install --upgrade pip setuptools ansible
