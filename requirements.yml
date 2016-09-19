@@ -24,9 +24,9 @@
   name: iptables
 
 - src: https://github.com/KEAOSolutions/ansible-grub_cmdline.git
-  version: v1.0.1
+  version: v1.0.2
   name: grub-cmdline
 
 - src: https://github.com/KEAOSolutions/ansible-role-clamav.git
-  version: v0.1.2
+  version: v0.1.3
   name: clamav
