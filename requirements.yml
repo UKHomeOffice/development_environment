@@ -30,3 +30,7 @@
 - src: https://github.com/KEAOSolutions/ansible-role-clamav.git
   version: v0.1.4
   name: clamav
+
+- src: https://github.com/KEAOSolutions/ansible-fstab.git
+  version: v0.0.1
+  name: fstab
