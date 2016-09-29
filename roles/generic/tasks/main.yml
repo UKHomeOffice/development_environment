@@ -96,7 +96,7 @@
 - name: Setup Rootkit Hunter Cron
   template:
     src: rkhunter.sh.j2
-    dest: /etc/cron.daily/rkunter.sh
+    dest: /etc/cron.daily/rkhunter.sh
     owner: root
     group: root
     mode: 0755
