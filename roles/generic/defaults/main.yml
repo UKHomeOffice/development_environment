@@ -24,6 +24,7 @@ generic_packages:
   - perl
   - policycoreutils
   - rcs
+  - rkhunter
   - rng-tools
   - rsync
   - screen
@@ -89,3 +90,5 @@ debian_packages:
   - vim-scripts
   - virtualenv
   - zlib1g-dev
+
+rk_email: root

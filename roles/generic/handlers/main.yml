@@ -1,0 +1,7 @@
+---
+- name: rkhunter update
+  command: /usr/bin/rkhunter --update
+  notify: rkhunter propupd
+
+- name: rkhunter propupd
+  command: /usr/bin/rkhunter --propupd
