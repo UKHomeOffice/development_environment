@@ -11,6 +11,8 @@ generic_packages:
   - groff
   - htop
   - jq
+  - inotify-tools
+  - iwatch
   - irqbalance
   - logrotate
   - lvm2

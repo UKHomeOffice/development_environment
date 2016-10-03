@@ -18,7 +18,7 @@
     src: 50unattended-upgrades
     owner: root
     group: root
-    mode: 0440
+    mode: 0444
   when: ansible_os_family | lower == 'debian'
 
 - name: Install Generic Pre Reqs - RedHat
