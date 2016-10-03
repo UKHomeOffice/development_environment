@@ -6,30 +6,3 @@ ssh_max_auth_retries: 6
 
 os_desktop_enable: true
 
-# Firewall Rules
-firewall_v4_group_rules:
-  400 allow web traffic:
-    - -A INPUT -p tcp --dport http -j ACCEPT
-    - -A INPUT -p tcp --dport https -j ACCEPT
-    - -A INPUT -p tcp --dport 8080 -j ACCEPT
-    - -A INPUT -p tcp --dport 8081 -j ACCEPT
-  401 allow hadoop services:
-    - -A INPUT -p tcp --dport 2181 -j ACCEPT
-  402 allow access to ranger:
-    - -A INPUT -p tcp --dport 6080 -j ACCEPT
-  403 allow access to registry:
-    - -A INPUT -p tcp --dport 5000 -j ACCEPT
-  404 allow access via ssh:
-    - -A INPUT -p tcp --dport 22 -j ACCEPT
-  405 allow access to mirror:
-    - -A INPUT -p tcp --dport 81 -j ACCEPT
-  406 allow access to kafka:
-    - -A INPUT -p tcp --dport 6667 -j ACCEPT
-  407 allow tcp DNS access:
-    - -A INPUT -p tcp --dport 53 -j ACCEPT
-  408 allow udp DNS access:
-    - -A INPUT -p udp --dport 53 -j ACCEPT
-  409 allow collectd to speak to postgres:
-    - -A INPUT -p tcp --dport 5432 -j ACCEPT
-  410 allow grafana to talk to ams metrics service:
-    - -A INPUT -p tcp --dport 6188 -j ACCEPT

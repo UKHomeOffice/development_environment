@@ -12,6 +12,15 @@
     update_cache: yes
   when: ansible_os_family | lower == 'debian'
 
+- name: Enable unattended auto update Ubuntu
+  copy:
+    dest: /etc/apt/apt.conf.d/50unattended-upgrades
+    src: 50unattended-upgrades
+    owner: root
+    group: root
+    mode: 0444
+  when: ansible_os_family | lower == 'debian'
+
 - name: Install Generic Pre Reqs - RedHat
   yum:
     name: "{{ item }}"
@@ -83,5 +92,22 @@
     owner: root
     group: root
     mode: 0644
+
+- name: Setup Rootkit Hunter Cron
+  template:
+    src: rkhunter.sh.j2
+    dest: /etc/cron.daily/rkhunter.sh
+    owner: root
+    group: root
+    mode: 0755
+
+- name: Update rkhunter email config
+  template:
+    src: rkhunter.conf.j2
+    dest: /etc/rkhunter.conf
+    owner: root
+    group: root
+    mode: 0644
+  notify: rkhunter update
 
 - debug: msg="Generic Package installation Complete"

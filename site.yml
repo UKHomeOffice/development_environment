@@ -5,6 +5,7 @@
     - vars.yml
   roles:
     - { role: generic }
+    - { role: fstab }
     - { role: os-hardening,
         os_desktop_enable: true,
         os_security_packages_list: ['xinetd','inetd','ypserv','telnet-server','rsh-server'] }
