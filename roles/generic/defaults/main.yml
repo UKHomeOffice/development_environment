@@ -2,12 +2,14 @@
 generic_packages:
   - curl
   - acpid
+  - bash-completion
   - bzip2
   - coreutils
   - dmidecode
   - dos2unix
   - dstat
   - e2fsprogs
+  - elinks
   - groff
   - htop
   - jq
@@ -15,26 +17,39 @@ generic_packages:
   - iwatch
   - irqbalance
   - logrotate
+  - ltrace
   - lvm2
   - lynx
+  - ncdu
+  - ngrep
+  - nmap
   - ntp
   - ntpdate
+  - man
+  - mlocate
+  - mr
+  - mtr
+  - multitail
   - openssh-server
   - openvpn
   - parted
   - pciutils
   - perl
   - policycoreutils
+  - pv
   - rcs
   - rkhunter
   - rng-tools
   - rsync
   - screen
+  - shellcheck
+  - sshuttle
   - sudo
   - sssd
   - sssd-tools
   - sssd-common
   - sysstat
+  - strace
   - tar
   - tcl
   - terminator
@@ -42,14 +57,15 @@ generic_packages:
   - tree
   - unzip
   - wget
+  - whois
   - vim-common
+  - vmtouch
   - zip
 
 redhat_packages:
   - dhclient
   - iputils
   - kernel-headers
-  - man
   - man-pages
   - nc
   - openssh
@@ -79,7 +95,7 @@ redhat_packages_conflicting_remove:
 debian_packages:
   - apparmor-profiles
   - apparmor-utils
-  - bash-completion
+  - bind9utils
   - kernel-package
   - libreadline-dev
   - netcat
