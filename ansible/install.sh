@@ -43,6 +43,7 @@ else
   TAG=${TAG:-$(git tag | tail -n 1)}
   echo "Running with Tag: ${TAG}"
   git checkout ${TAG}
+  cd ansible
   ansible-galaxy install -r requirements.yml --force
   ansible-playbook -i hostfile -v site.yml
 fi
