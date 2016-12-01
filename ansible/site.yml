@@ -15,8 +15,8 @@
     - { role: audit-hardening }
     - { role: docker }
     - { role: minikube }
-    - { role: kubectl }
-    - { role: docker_images }
-    - { role: toolbox }
+#    - { role: kubectl }
+#    - { role: docker_images }
+#    - { role: toolbox }
     - { role: virtualbox }
     - { role: clamav }

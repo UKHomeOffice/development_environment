@@ -1,36 +1,36 @@
 ---
 - src: https://github.com/KEAOSolutions/ansible-audit-hardening.git
-  version: 0.0.2
+  version: ada0897919405e99d5534def93a90ee628ae7e57
   name: audit-hardening
 
 - src: https://github.com/KEAOSolutions/ansible-os-hardening
-  version: 3.1.0.6
+  version: 06d606cd4f96596b898feea2903954e180315550
   name: os-hardening
 
 - src: https://github.com/KEAOSolutions/ansible-ssh-hardening
-  version: 3.1.0.1
+  version: aead6bc66f6f6f1cc73c061faf46775123ff903e
   name: ssh-hardening
 
 - src: https://github.com/KEAOSolutions/ansible-docker
-  version: 0.0.2
+  version: 9a925c7ba26352ab7c546bc1060f695ddaee4fc6
   name: docker
 
 - src: https://github.com/KEAOSolutions/ansible-virtualbox
-  version: v1.0.1
+  version: 7b387ae3a9770d3fc6485081c06335adc453ae9e
   name: virtualbox
 
 - src: https://github.com/KEAOSolutions/ansible-role-firewall
-  version: 0.2.2
+  version: 19f7754b90db7b4018ae63d8fbbec48934bcb818
   name: iptables
 
 - src: https://github.com/KEAOSolutions/ansible-grub_cmdline.git
-  version: v1.0.2
+  version: 454a7ab7dbe993be32cb6ebbdffe7075e5d1a989
   name: grub-cmdline
 
 - src: https://github.com/KEAOSolutions/ansible-role-clamav.git
-  version: v0.1.4
+  version: 5d10a711a8ef718e4a6a23925016db4784afd38e
   name: clamav
 
 - src: https://github.com/KEAOSolutions/ansible-fstab.git
-  version: v0.0.1
+  version: 7bec450deec0d255158748ae817ee23148b28dd1
   name: fstab

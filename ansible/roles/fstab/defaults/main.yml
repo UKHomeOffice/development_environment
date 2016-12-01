@@ -1,0 +1,42 @@
+---
+mount_points:
+  "/":
+    src: "/dev/mapper/vg--workstation-root"
+    fstype: "ext4"
+    opts: "errors=remount-ro"
+    state: "present"
+  "/tmp":
+    src: "/dev/mapper/vg--workstation-tmp"
+    fstype: "ext4"
+    opts: "nodev,nosuid,noexec"
+    state: "present"
+  "/var/tmp":
+    src: "/dev/mapper/vg--workstation-var_tmp"
+    fstype: "ext4"
+    opts: "nodev,nosuid,noexec"
+    state: "present"
+  "/var":
+    src: "/dev/mapper/vg--workstation-var"
+    fstype: "ext4"
+    opts: "defaults"
+    state: "present"
+  "/var/lib/docker":
+    src: "/dev/mapper/vg--workstation-var_lib_docker"
+    fstype: "ext4"
+    opts: "defaults"
+    state: "present"
+  "/var/log":
+    src: "/dev/mapper/vg--workstation-var_log"
+    fstype: "ext4"
+    opts: "nodev,nosuid,noexec"
+    state: "present"
+  "/var/log/audit":
+    src: "/dev/mapper/vg--workstation-var_log_audit"
+    fstype: "ext4"
+    opts: "nodev,nosuid,noexec"
+    state: "present"
+  "/home":
+    src: "/dev/mapper/vg--workstation-home"
+    fstype: "ext4"
+    opts: "nodev,nosuid"
+    state: "present"

@@ -12,7 +12,6 @@ generic_packages:
   - htop
   - jq
   - inotify-tools
-  - iwatch
   - irqbalance
   - logrotate
   - lvm2
@@ -80,6 +79,8 @@ debian_packages:
   - apparmor-profiles
   - apparmor-utils
   - bash-completion
+  - iwatch
+  - iptables-persistent
   - kernel-package
   - libreadline-dev
   - netcat
@@ -93,4 +94,11 @@ debian_packages:
   - virtualenv
   - zlib1g-dev
 
+debian_packages_gui:
+  - metacity-themes
+  - ubuntu-gnome-desktop
+
 rk_email: root
+
+missing:
+  - nivada-current

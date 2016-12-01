@@ -69,6 +69,14 @@
     - "{{ debian_packages }}"
   when: ansible_os_family | lower == 'debian'
 
+- name: Install Generic Packages GUI - Debian
+  apt:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - "{{ debian_packages_gui }}"
+  when: ansible_os_family | lower == 'debian'
+
 - name: Fix bash_completion grub
   copy:
     src: grub

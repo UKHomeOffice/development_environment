@@ -21,7 +21,7 @@ All modules included here should work as a minimum under xfce4 with either an Ub
 To bootstrap this job please run:
 
 ```
-curl https://raw.githubusercontent.com/UKHomeOffice/development_environment/master/install.sh | bash
+curl https://raw.githubusercontent.com/UKHomeOffice/development_environment/master/ansible/install.sh | bash
 ```
 
 ### Development
@@ -29,7 +29,7 @@ curl https://raw.githubusercontent.com/UKHomeOffice/development_environment/mast
 This will install the latest tagged release, if you are developing and need a development version (not to be used on live machines but within Vagrant or test boxes) then you can run the following to pull and built the lastest development release:
 
 ```
-curl https://raw.githubusercontent.com/UKHomeOffice/development_environment/develop/install.sh | TAG=develop bash
+curl https://raw.githubusercontent.com/UKHomeOffice/development_environment/develop/ansible/install.sh | TAG=develop bash
 ```
 
 
