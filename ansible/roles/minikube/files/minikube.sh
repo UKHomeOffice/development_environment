@@ -1,9 +1,9 @@
 #!/bin/bash
 
 
-if [[ ${USER} -ne "root" ]]
+if [ ${USER} -ne "root" ]
 then
-  if [[ $(minikube status) -ne "Does not Exist" ]]
+  if [ $(minikube status) -ne "Does not Exist" ]
   then
     $(minikube start)
   fi

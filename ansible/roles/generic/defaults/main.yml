@@ -108,6 +108,8 @@ debian_packages:
   - ykneomgr
   - libpam-yubico
   - scdaemon
+  - gnupg-pkcs11-scd
+  - strace
 
 debian_packages_gui:
   - metacity-themes
