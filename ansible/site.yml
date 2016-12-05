@@ -19,7 +19,7 @@
 #    - { role: docker_images }
 #    - { role: toolbox }
     - { role: virtualbox }
-    - { role: clamav }
     - { role: vagrant }
     - { role: packer }
     - { role: slack }
+    - { role: clamav }
