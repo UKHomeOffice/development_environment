@@ -118,4 +118,10 @@
     mode: 0644
   notify: rkhunter update
 
+- name: Start PCSC Daemon
+  systemd:
+    name: pcscd
+    state: started
+    enabled: True
+
 - debug: msg="Generic Package installation Complete"

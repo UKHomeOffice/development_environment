@@ -100,6 +100,14 @@ debian_packages:
   - opensc-pkcs11
   - libccid
   - pcscd
+  - yubioath-desktop
+  - yubikey-personalization-gui
+  - yubikey-luks
+  - yubikey-ksm
+  - yubico-piv-tool
+  - ykneomgr
+  - libpam-yubico
+  - scdaemon
 
 debian_packages_gui:
   - metacity-themes
