@@ -93,6 +93,13 @@ debian_packages:
   - vim-scripts
   - virtualenv
   - zlib1g-dev
+  - libykclient3
+  - libykpers-1-1
+  - pcsc-tools
+  - opensc
+  - opensc-pkcs11
+  - libccid
+  - pcscd
 
 debian_packages_gui:
   - metacity-themes
