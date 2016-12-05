@@ -44,5 +44,5 @@
   name: vagrant
 
 - src: https://github.com/KEAOSolutions/ansible-role-slack.git
-  version: a5e8c51fa5f9fc4f04d94fe7ec0cbd4fe4703582
+  version: 0fd75ee566e06770bf9316e46660a9e318cd3bcd
   name: slack
