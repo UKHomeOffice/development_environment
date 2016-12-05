@@ -1,10 +1,9 @@
 #!/bin/bash
 
-set -eux -o pipefail
 
-if [ ! ${USER} == "root" ]
+if [[ ${USER} -ne "root" ]]
 then
-  if [ ! $(minikube status) == "Does not Exist" ]
+  if [[ $(minikube status) -ne "Does not Exist" ]]
   then
     $(minikube start)
   fi
