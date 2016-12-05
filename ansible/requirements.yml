@@ -34,3 +34,15 @@
 - src: https://github.com/KEAOSolutions/ansible-fstab.git
   version: 7bec450deec0d255158748ae817ee23148b28dd1
   name: fstab
+
+- src: https://github.com/UKHomeOffice/ansible-packer
+  version: 96cd678b919d1309458b8366b99fd36e3eb41553
+  name: packer
+
+- src: https://github.com/UKHomeOffice/ansible-role-vagrant.git
+  version: 3cbc91cca808c2ed54de99ad765b163e24b38cb9
+  name: vagrant
+
+- src: https://github.com/KEAOSolutions/ansible-role-slack.git
+  version: 2f2e4863910bf94c8a1d661cea0e5f938c713e70
+  name: slack
