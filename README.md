@@ -32,5 +32,16 @@ This will install the latest tagged release, if you are developing and need a de
 curl https://raw.githubusercontent.com/UKHomeOffice/development_environment/develop/ansible/install.sh | TAG=develop bash
 ```
 
+### Setting up the proxy
+Running the PXE server requires setting up a proxy. First, make sure the IP address specified in the Makefile is one that your local machine has on e.g. an ethernet connection. Then clone the following git repository:
+
+```
+https://github.com/keaosolutions/docker-proxy-cache
+```
+
+Finally, start the proxy server by running the following commands in the new directory:
+
+    docker build -t cache .
+    make run
 
 
