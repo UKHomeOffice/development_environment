@@ -10,4 +10,4 @@ packer_cache/*
 *.box
 iso/*
 http/preseed.cfg
-
+.vagrant/*

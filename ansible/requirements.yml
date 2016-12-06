@@ -28,7 +28,7 @@
   name: grub-cmdline
 
 - src: https://github.com/KEAOSolutions/ansible-role-clamav.git
-  version: ad3eb3651ef337371e44519d1c53690066e4d74d
+  version: e052dd3432e74118836e4ec2cfa9caef62d0a26f
   name: clamav
 
 - src: https://github.com/KEAOSolutions/ansible-fstab.git
