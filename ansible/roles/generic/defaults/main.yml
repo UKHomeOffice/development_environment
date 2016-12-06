@@ -97,6 +97,7 @@ debian_packages:
   - iwatch
   - iptables-persistent
   - bind9utils
+  - pinentry-gtk2
   - kernel-package
   - libreadline-dev
   - netcat
