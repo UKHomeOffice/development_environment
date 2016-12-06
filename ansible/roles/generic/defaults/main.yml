@@ -109,6 +109,23 @@ debian_packages:
   - vim-scripts
   - virtualenv
   - zlib1g-dev
+  - libykclient3
+  - libykpers-1-1
+  - pcsc-tools
+  - opensc
+  - opensc-pkcs11
+  - libccid
+  - pcscd
+  - yubioath-desktop
+  - yubikey-personalization-gui
+  - yubikey-luks
+  - yubikey-ksm
+  - yubico-piv-tool
+  - ykneomgr
+  - libpam-yubico
+  - scdaemon
+  - gnupg-pkcs11-scd
+  - strace
 
 debian_packages_gui:
   - metacity-themes

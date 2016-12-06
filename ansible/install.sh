@@ -39,7 +39,7 @@ else
   cd development_environment
   git fetch
   git clean -fxd
-  git reset --hard
+  git reset --hard HEAD
   TAG=${TAG:-$(git tag | tail -n 1)}
   echo "Running with Tag: ${TAG}"
   git checkout ${TAG}

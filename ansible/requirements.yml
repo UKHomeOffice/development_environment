@@ -28,9 +28,21 @@
   name: grub-cmdline
 
 - src: https://github.com/KEAOSolutions/ansible-role-clamav.git
-  version: 5d10a711a8ef718e4a6a23925016db4784afd38e
+  version: ad3eb3651ef337371e44519d1c53690066e4d74d
   name: clamav
 
 - src: https://github.com/KEAOSolutions/ansible-fstab.git
   version: 7bec450deec0d255158748ae817ee23148b28dd1
   name: fstab
+
+- src: https://github.com/UKHomeOffice/ansible-packer
+  version: 96cd678b919d1309458b8366b99fd36e3eb41553
+  name: packer
+
+- src: https://github.com/UKHomeOffice/ansible-role-vagrant.git
+  version: 3cbc91cca808c2ed54de99ad765b163e24b38cb9
+  name: vagrant
+
+- src: https://github.com/KEAOSolutions/ansible-role-slack.git
+  version: 0fd75ee566e06770bf9316e46660a9e318cd3bcd
+  name: slack
