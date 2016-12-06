@@ -58,7 +58,6 @@ generic_packages:
   - wget
   - whois
   - vim-common
-  - vmtouch
   - zip
 
 redhat_packages:
