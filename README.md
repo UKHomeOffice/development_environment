@@ -41,7 +41,6 @@ https://github.com/keaosolutions/docker-proxy-cache
 
 Finally, start the proxy server by running the following commands in the new directory:
 
-    docker build -t cache .
     make run
 
-
+This builds and runs a local proxy with port 3128 exposed to your local network, please then update the Makefile for the development_environment project to have your local IP address as the proxy server.
