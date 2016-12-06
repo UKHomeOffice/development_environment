@@ -27,6 +27,10 @@
   version: 454a7ab7dbe993be32cb6ebbdffe7075e5d1a989
   name: grub-cmdline
 
+- src: https://github.com/UKHomeOffice/ansible-role-sublime.git
+  version: 3726595cc83231ccc06da4515911ecd4f533b609
+  name: sublime
+
 - src: https://github.com/KEAOSolutions/ansible-role-clamav.git
   version: 82adcaefca2ce7d6eb6c7f0107010a8cb92da841 
   name: clamav

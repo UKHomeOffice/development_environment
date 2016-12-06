@@ -22,4 +22,5 @@
     - { role: vagrant }
     - { role: packer }
     - { role: slack }
+    - { role: sublime }
     - { role: clamav }
