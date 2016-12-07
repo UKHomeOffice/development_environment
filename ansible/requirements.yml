@@ -24,7 +24,7 @@
   name: iptables
 
 - src: https://github.com/KEAOSolutions/ansible-grub_cmdline.git
-  version: 454a7ab7dbe993be32cb6ebbdffe7075e5d1a989
+  version: 52aa2300ba95582f5e72d8796745978c7682b256
   name: grub-cmdline
 
 - src: https://github.com/UKHomeOffice/ansible-role-sublime.git
