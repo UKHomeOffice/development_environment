@@ -1,5 +1,5 @@
 ---
-minikube_version: 0.7.1
-minikube_checksum: "sha256:461c09753505e8c06a55b59633abbaa4daa89190374e4c737fe4d4d1107b9f1b"
+minikube_version: 0.13.1
+minikube_checksum: "sha256:52706da92b6cf9a5eb4f59fe6034f119e3eb442c3fc57bf181d01db929e1289f"
 minikube_download_url: http://storage.googleapis.com/minikube/releases/v
 docker_api_version: 1.23

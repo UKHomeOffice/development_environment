@@ -10,7 +10,7 @@
   become: true
 
 - name: Write minikube profile
-  copy:
+  template:
     src: minikube.sh
     dest: /etc/profile.d/minikube.sh
     mode: 0644
