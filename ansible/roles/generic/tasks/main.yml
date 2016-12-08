@@ -1,0 +1,137 @@
+---
+- name: Update Yum Packages - RedHat
+  yum:
+    update_cache: yes
+    name: "*"
+    state: latest
+  when: ansible_os_family | lower == 'redhat'
+
+- name: Update Apt Packages - Debian
+  apt:
+    upgrade: dist
+    update_cache: yes
+  when: ansible_os_family | lower == 'debian'
+
+- name: Enable unattended auto update Ubuntu
+  copy:
+    dest: /etc/apt/apt.conf.d/50unattended-upgrades
+    src: 50unattended-upgrades
+    owner: root
+    group: root
+    mode: 0444
+  when: ansible_os_family | lower == 'debian'
+
+- name: Install Generic Pre Reqs - RedHat
+  yum:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - "{{ generic_packages }}"
+  when: ansible_os_family | lower == 'redhat'
+
+- name: Install Generic Pre Reqs - Debian
+  apt:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - "{{ generic_packages }}"
+  when: ansible_os_family | lower == 'debian'
+
+- name: Install Generic Pre Reqs - RedHat
+  yum:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - "{{ redhat_packages }}"
+  when: ansible_os_family | lower == 'redhat'
+
+- name: Install Generic Pre Reqs - RedHat6
+  yum:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - "{{ redhat_packages_6 }}"
+  when: ansible_os_family | lower == 'redhat' and ansible_distribution_version <= '6.8'
+
+- name: Remove conflicting Packages - RedHat
+  yum:
+    name: "{{ item }}"
+    state: absent
+  with_items:
+    - "{{ redhat_packages_conflicting_remove }}"
+  when: ansible_os_family | lower == 'redhat'
+
+- name: Install Generic Packages - Debian
+  apt:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - "{{ debian_packages }}"
+  when: ansible_os_family | lower == 'debian'
+
+- name: Install Generic Packages GUI - Debian
+  apt:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - "{{ debian_packages_gui }}"
+  when: ansible_os_family | lower == 'debian'
+
+- name: Fix bash_completion grub
+  copy:
+    src: grub
+    dest: /etc/bash_completion.d/grub
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Fix bash_completion desktop-file-validate
+  copy:
+    src: grub
+    dest: /etc/bash_completion.d/desktop-file-validate
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Fix bash_completion insserv
+  copy:
+    src: grub
+    dest: /etc/bash_completion.d/insserv
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Setup Rootkit Hunter Cron
+  template:
+    src: rkhunter.sh.j2
+    dest: /etc/cron.daily/rkhunter.sh
+    owner: root
+    group: root
+    mode: 0755
+
+- name: Update rkhunter email config
+  template:
+    src: rkhunter.conf.j2
+    dest: /etc/rkhunter.conf
+    owner: root
+    group: root
+    mode: 0644
+  notify: rkhunter update
+
+- name: Start PCSC Daemon
+  systemd:
+    name: pcscd
+    state: started
+    enabled: True
+
+- name: force gpg2
+  file:
+    src: /usr/bin/gpg2
+    dest: /usr/bin/gpg
+    state: link
+    owner: root
+    group: root
+    mode: 0755
+    force: yes
+
+- debug: msg="Generic Package installation Complete"

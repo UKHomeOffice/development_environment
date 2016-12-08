@@ -1,0 +1,10 @@
+---
+
+- name: mounts
+  mount:
+    name: "{{ item.key }}"
+    src: "{{ item.value.src }}"
+    fstype: "{{ item.value.fstype }}"
+    opts: "{{ item.value.opts }}"
+    state: "{{ item.value.state }}"
+  with_dict: "{{ mount_points }}"

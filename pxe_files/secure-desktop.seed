@@ -1,0 +1,216 @@
+# Fix USB NICS
+#d-i partman/early_command				    string      ip link set eth0 up;
+
+# regional setting
+d-i debian-installer/language                               string      en_GB:en
+d-i debian-installer/country                                string      GB
+d-i debian-installer/locale                                 string      en_GB.UTF-8
+d-i debian-installer/splash                                 boolean     true
+d-i localechooser/supported-locales                         multiselect en_GB.UTF-8
+d-i pkgsel/install-language-support                         boolean     true
+
+# keyboard selection
+d-i console-setup/ask_detect                                boolean     false
+d-i keyboard-configuration/layout                           string      English (UK)
+d-i keyboard-configuration/variant                          string      English (UK)
+d-i keyboard-configuration/modelcode                        string      pc105
+d-i keyboard-configuration/layoutcode                       string      uk
+d-i keyboard-configuration/variantcode                      string      intl
+d-i keyboard-configuration/xkb-keymap                       select      uk(intl)
+d-i debconf/language                                        string      en_GB:en
+
+#Iptables-persistent preseed
+d-i iptables-persistent/autosave_v4                         boolean     true
+d-i iptables-persistent/autosave_v6                         boolean     true
+
+# network settings
+d-i netcfg/choose_interface                                 select      auto
+d-i netcfg/dhcp_timeout                                     string      5
+d-i netcfg/hostname                                         string      workstation
+d-i netcfg/dhcp_hostname                                    string      workstation
+d-i netcfg/get_hostname                                     string      workstation 
+d-i netcfg/domain                                           string      eud.com
+d-i netcfg/get_domain                                       string      eud.com
+
+# mirror settings
+d-i mirror/country                                          string      manual
+d-i mirror/http/hostname                                    string      archive.ubuntu.com 
+d-i mirror/http/directory                                   string      /ubuntu
+d-i time/zone                                               string      Europe/London 
+d-i clock-setup/utc                                         boolean     false
+d-i clock-setup/ntp                                         boolean     true
+d-i mirror/http/proxy                                       string      http://192.168.87.254:3142/
+
+#housekeeping
+popularity-contest popularity-contest/participate           boolean     false
+
+#Grub setup
+d-i grub-installer/password-crypted                         password    grub.pbkdf2.sha512.10000.E65058A56FB4B16E59B2BECEF0FA283ADFE72A6143D18DC44080B947A15CE6F82EFC88CF72E6093D7E8B11FADC96C2A0650D176554AD06E654D53DB44318DBA7.1D05EEBC937A231D4FE1DD520C16013E38165DDF4D8C93C0C357D4BD280A4DD4D02FA3A74120CD4F93C9B7D35D955306F7603852C27B450A0A5D4577E413B40C
+d-i grub-installer/choose_bootdev                           string      /dev/sda 
+
+# user account setup
+d-i passwd/root-login                                       boolean     false
+d-i passwd/make-user                                        boolean     true
+d-i passwd/user-fullname                                    string      tempuser 
+d-i passwd/username                                         string      tempuser 
+d-i passwd/user-password                                    password    tempuser
+d-i passwd/user-password-again                              password    tempuser
+d-i passwd/user-uid                                         string
+d-i user-setup/allow-password-weak                          boolean     true
+d-i passwd/user-default-groups                              string      adm cdrom dialout lpadmin plugdev sambashare
+d-i user-setup/encrypt-home                                 boolean     false
+
+# configure apt
+d-i apt-setup/restricted                                    boolean     true
+d-i apt-setup/universe                                      boolean     true
+d-i apt-setup/backports                                     boolean     true
+d-i apt-setup/services-select                               multiselect security
+d-i apt-setup/security_host                                 string      security.ubuntu.com
+d-i apt-setup/security_path                                 string      /ubuntu
+tasksel tasksel/first                                       multiselect ubuntu-desktop 
+d-i pkgsel/include                                          string      \
+    ubuntu-desktop,metacity,nvidia-current,vim,apparmor-profiles,apparmor-utils,iptables-persistent
+d-i pkgsel/upgrade                                          select      safe-upgrade
+d-i pkgsel/upgrade                                          select      none 
+d-i pkgsel/update-policy                                    select      unattended-upgrades 
+d-i pkgsel/updatedb                                         boolean     true
+
+# disk partitioning
+d-i partman/unmount_active                                  boolean     true
+d-i partman-auto/method 				    string      crypto
+d-i partman-auto/disk                                       string      /dev/DISK
+d-i partman-crypto/passphrase                               password    Password01
+d-i partman-crypto/passphrase-again                         password    Password01
+d-i partman/confirm_write_new_label                         boolean     true
+d-i partman/choose_partition                                select      finish
+d-i partman/confirm_nooverwrite                             boolean     true
+d-i partman/confirm                                         boolean     true
+d-i partman-auto/purge_lvm_from_device                      boolean     true
+d-i partman-lvm/device_remove_lvm                           boolean     true
+d-i partman-lvm/confirm                                     boolean     true
+d-i partman-lvm/confirm_nooverwrite                         boolean     true
+#d-i partman-auto-lvm/no_boot                                boolean     true
+d-i partman-md/device_remove_md                             boolean     true
+d-i partman-md/confirm                                      boolean     true
+d-i partman-md/confirm_nooverwrite                          boolean     true
+d-i partman-auto-lvm/guided_size                            string      max
+d-i partman-auto-lvm/new_vg_name                            string      vg-workstation
+d-i partman/default_filesystem                              string      ext4
+d-i partman-partitioning/confirm_write_new_label            boolean     true
+d-i partman-auto/choose_recipe                              string      custom-lvm
+#d-i partman-auto/choose_recipe select atomic
+
+d-i partman-auto/expert_recipe string                         \
+      custom-lvm ::                                           \
+        250 100 512 ext4 $bootable{ }                         \
+        mountpoint{ /boot }                                   \
+        method{ format }                                      \
+        format{ }                                             \
+        use_filesystem{ }                                     \
+        filesystem{ ext4 }                                    \
+        .                                                     \
+        10240 100 20480 ext4 $lvmok{ }                        \
+        mountpoint{ / }                                       \
+        lv_name{ root }                                       \
+        in_vg { vg-workstation }                              \
+        method{ format }                                      \
+        format{ }                                             \
+        use_filesystem{ }                                     \
+        filesystem{ ext4 }                                    \
+        .                                                     \
+        5120 50 10240 ext4 $lvmok{ }                          \
+        mountpoint{ /tmp }                                    \
+        lv_name{ tmp }                                        \
+        in_vg { vg-workstation }                              \
+        method{ format }                                      \
+        format{ }                                             \
+        use_filesystem{ }                                     \
+        filesystem{ ext4 }                                    \
+	options/noexec{ noexec }    			      \
+        options/nosuid{ nosuid }    			      \
+        options/nodev{ nodev }    			      \
+        options/rw{ rw }	    			      \
+        .                                                     \
+        5120 50 10240 ext4 $lvmok{ }                          \
+        mountpoint{ /var }                                    \
+        lv_name{ var }                                        \
+        in_vg { vg-workstation }                              \
+        method{ format }                                      \
+        format{ }                                             \
+        use_filesystem{ }                                     \
+        filesystem{ ext4 }                                    \
+        options/rw{ rw }	    			      \
+        .                                                     \
+        5120 50 10240 ext4 $lvmok{ }                          \
+        mountpoint{ /var/tmp }                                \
+        lv_name{ var_tmp }                                    \
+        in_vg { vg-workstation }                              \
+        method{ format }                                      \
+        format{ }                                             \
+        use_filesystem{ }                                     \
+        filesystem{ ext4 }                                    \
+	options/noexec{ noexec }    			      \
+        options/nosuid{ nosuid }    			      \
+        options/nodev{ nodev }    			      \
+        options/rw{ rw }	    			      \
+        .                                                     \
+        5120 50 10240 ext4 $lvmok{ }                          \
+        mountpoint{ /var/log }                                \
+        lv_name{ var_log }                                    \
+        in_vg { vg-workstation }                              \
+        method{ format }                                      \
+        format{ }                                             \
+        use_filesystem{ }                                     \
+        filesystem{ ext4 }                                    \
+        options/rw{ rw }	    			      \
+        .                                                     \
+        2048 60 5120 ext4 $lvmok{ }                           \
+        mountpoint{ /var/log/audit }                          \
+        lv_name{ var_log_audit }                              \
+        in_vg { vg-workstation }                              \
+        method{ format }                                      \
+        format{ }                                             \
+        use_filesystem{ }                                     \
+        filesystem{ ext4 }                                    \
+        options/rw{ rw }	    			      \
+        .                                                     \
+        20480 50 102400 ext4 $lvmok{ }                        \
+        mountpoint{ /var/lib/docker }                         \
+        lv_name{ var_lib_docker }                             \
+        in_vg { vg-workstation }                              \
+        method{ format }                                      \
+        format{ }                                             \
+        use_filesystem{ }                                     \
+        filesystem{ ext4 }                                    \
+        options/rw{ rw }	    			      \
+        .                                                     \
+        20480 50 102400 ext4 $lvmok{ }                        \
+        mountpoint{ /home }                                   \
+        lv_name{ home }                                       \
+        in_vg { vg-workstation }                              \
+        method{ format }                                      \
+        format{ }                                             \
+        use_filesystem{ }                                     \
+        filesystem{ ext4 }                                    \
+	options/defaults{ defaults }   			      \
+        options/nosuid{ nosuid }    			      \
+        options/nodev{ nodev }    			      \
+        .                                                     \
+        4096 60 4096 linux-swap $lvmok{ }                     \
+        lv_name{ swap }                                       \
+        in_vg { vg-workstation }                              \
+        method{ swap }                                        \
+        format{ }                                             \
+        .
+
+# grub boot loader
+d-i grub-installer/only_debian                              boolean     true
+d-i grub-installer/with_other_os                            boolean     true
+
+# finish installation
+d-i finish-install/reboot_in_progress                       note
+d-i finish-install/keep-consoles                            boolean     false
+d-i cdrom-detect/eject                                      boolean     true
+d-i debian-installer/exit/halt                              boolean     false
+d-i debian-installer/exit/poweroff                          boolean     false
+

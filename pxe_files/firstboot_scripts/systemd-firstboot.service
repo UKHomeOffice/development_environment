@@ -1,0 +1,18 @@
+# firstboot-custom - End-user configuration after initial installation
+# Original file: oem-config
+#
+# Run on the first boot after shipping to the end user to reconfigure the
+# system for them; removes itself thereafter.
+
+[Unit]
+Description=User Bootstrap
+     
+[Service]
+Type=oneshot
+WorkingDirectory=/tmp
+ExecStart=/bin/bash /opt/firstboot_scripts/desktop-bootstrap-user.sh
+ExecStartPost=/bin/bash /opt/firstboot_scripts/postinstall.sh
+SyslogIdentifier=bootstrap-user
+     
+[Install]
+WantedBy=multi-user.target
