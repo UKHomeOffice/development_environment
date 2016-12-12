@@ -130,6 +130,7 @@ debian_packages:
 debian_packages_gui:
   - metacity-themes
   - ubuntu-gnome-desktop
+  - network-manager-openvpn-gnome
 
 rk_email: root
 

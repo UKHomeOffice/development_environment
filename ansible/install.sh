@@ -1,5 +1,5 @@
 #!/bin/bash
-set -x
+set -euxo pipefail
 
 PROXY=${PROXY:-}
 OS=$(cat /etc/os-release|sed -e 's/"//'|grep ID_LIKE|awk -F '=' '{print $2}'|awk '{print $1}')

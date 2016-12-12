@@ -24,11 +24,15 @@
   name: iptables
 
 - src: https://github.com/KEAOSolutions/ansible-grub_cmdline.git
-  version: 454a7ab7dbe993be32cb6ebbdffe7075e5d1a989
+  version: 52aa2300ba95582f5e72d8796745978c7682b256
   name: grub-cmdline
 
+- src: https://github.com/UKHomeOffice/ansible-role-sublime.git
+  version: 3726595cc83231ccc06da4515911ecd4f533b609
+  name: sublime
+
 - src: https://github.com/KEAOSolutions/ansible-role-clamav.git
-  version: e052dd3432e74118836e4ec2cfa9caef62d0a26f
+  version: cc7403757891e4b61e95b9fed66b975554f9d6f1
   name: clamav
 
 - src: https://github.com/KEAOSolutions/ansible-fstab.git

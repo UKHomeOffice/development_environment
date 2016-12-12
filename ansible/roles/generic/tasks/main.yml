@@ -124,4 +124,14 @@
     state: started
     enabled: True
 
+- name: force gpg2
+  file:
+    src: /usr/bin/gpg2
+    dest: /usr/bin/gpg
+    state: link
+    owner: root
+    group: root
+    mode: 0755
+    force: yes
+
 - debug: msg="Generic Package installation Complete"
