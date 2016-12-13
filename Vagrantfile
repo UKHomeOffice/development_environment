@@ -19,8 +19,8 @@ Vagrant.configure("2") do |config|
       v.customize ["modifyvm", :id, "--clipboard", "bidirectional"]
     end
     ubuntu_test.vm.provision "shell" do |s|
-      s.inline = "PROXY=$1/bin/bash /vagrant/ansible/install.sh"
-      s.args = "#{ENV['PROXY']}"
+      s.inline = "PROXY=$1/bin/bash DEVOPS=$2 /vagrant/ansible/install.sh"
+      s.args = "#{ENV['PROXY']} #{ENV['DEVOPS']}"
     end
   end
   config.vm.define "pxe" do |pxe|

@@ -1,5 +1,5 @@
 
-PROXY := "10.14.17.200:3142"
+PROXY := "10.14.17.210:3142"
 
 box:
 	sed "s|PROXY|$(PROXY)|g" http/preseed.cfg.orig > http/preseed.cfg
@@ -7,7 +7,11 @@ box:
 
 test:
 	@vagrant box add ubuntu16.04 ./builds/ubuntu-16.04-amd64-virtualbox.box --force
-	@PROXY=$(PROXY) vagrant up ubuntu_test --provision
+	@PROXY=$(PROXY) DEVOPS=false vagrant up ubuntu_test --provision
+
+devopstest:
+	@vagrant box add ubuntu16.04 ./builds/ubuntu-16.04-amd64-virtualbox.box --force
+	@PROXY=$(PROXY) DEVOPS=true vagrant up ubuntu_test --provision
 
 pxe:
 	@vagrant box add ubuntu16.04 ./builds/ubuntu-16.04-amd64-virtualbox.box --force
