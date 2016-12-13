@@ -25,3 +25,4 @@
     - { role: slack }
     - { role: sublime }
     - { role: clamav }
+    - { role: sysdig }
