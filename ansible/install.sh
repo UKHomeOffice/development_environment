@@ -6,6 +6,7 @@ OS=$(cat /etc/os-release|sed -e 's/"//'|grep ID_LIKE|awk -F '=' '{print $2}'|awk
 
 if [ ${OS} == "debian" ]
 then
+  systemctl disable apt-daily.timer
   apt-get -y install python-pip git libssl-dev libffi-dev
   pip install 'docker-py==1.9.0'
 fi
@@ -46,6 +47,11 @@ else
   cd ansible
   ansible-galaxy install -r requirements.yml --force
   ansible-playbook -i hostfile -v site.yml
+fi
+
+if [ ${OS} == "debian" ]
+then
+  systemctl enable apt-daily.timer
 fi
 
 exit 0
