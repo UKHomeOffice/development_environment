@@ -7,11 +7,11 @@ box:
 
 test:
 	@vagrant box add ubuntu16.04 ./builds/ubuntu-16.04-amd64-virtualbox.box --force
-	@PROXY=$(PROXY) DEVOPS=false vagrant up ubuntu_test --provision
+	@PROXY=$(PROXY) AWM=false vagrant up ubuntu_test --provision
 
-devopstest:
+awmtest:
 	@vagrant box add ubuntu16.04 ./builds/ubuntu-16.04-amd64-virtualbox.box --force
-	@PROXY=$(PROXY) DEVOPS=true vagrant up ubuntu_test --provision
+	@PROXY=$(PROXY) AWM=true vagrant up ubuntu_test --provision
 
 pxe:
 	@vagrant box add ubuntu16.04 ./builds/ubuntu-16.04-amd64-virtualbox.box --force

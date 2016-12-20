@@ -27,4 +27,4 @@
     - { role: clamav }
     - { role: sysdig }
     - { role: awesome-wm,
-        when: devops }
+        when: awesomewm }
