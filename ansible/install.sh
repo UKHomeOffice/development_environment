@@ -2,6 +2,15 @@
 set -euxo pipefail
 
 PROXY=${PROXY:-}
+
+if [[ ! -z ${PROXY} ]]
+then
+  if [[ ${PROXY} == */* ]]
+  then
+    PROXY=$(echo ${PROXY} | awk -F'/' '{print $1}')
+  fi
+fi
+
 OS=$(cat /etc/os-release|sed -e 's/"//'|grep ID_LIKE|awk -F '=' '{print $2}'|awk '{print $1}')
 
 if [[ ${OS} == "debian" ]]
@@ -9,14 +18,17 @@ then
   if [[ ! -z ${PROXY} ]]
   then
     echo "Setting Proxy to: ${PROXY}"
-    echo "Acquire::http::Proxy \"http://${PROXY}/\";" > /etc/apt/apt.conf
+    echo "Acquire::http::Proxy \"http://${PROXY}:3142/\";" > /etc/apt/apt.conf
     echo "Acquire::http::Proxy::apt.dockerproject.org \"DIRECT\";" > /etc/apt/apt.conf.d/01_docker_proxy.conf
-    export http_proxy=${PROXY}
+    export http_proxy=${PROXY}:3128
+    mkdir -p /root/.pip
+    echo "[global]\nindex-url = http://${PROXY}:3141/pypi/\n--trusted-host http://${PROXY}:3141\n\n[search]\nindex = http://${PROXY}:3141/pypi" > /root/.pip/pip.conf
   else
     unset http_proxy
     unset https_proxy
     rm -f /etc/apt/apt.conf
     rm -f /etc/apt/apt.conf.d/01_docker_proxy.conf
+    rm -rf /root/.pip
   fi
   systemctl disable apt-daily.timer
   apt-get -y install python-pip git libssl-dev libffi-dev
