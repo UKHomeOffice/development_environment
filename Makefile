@@ -2,7 +2,7 @@
 PROXY := "10.14.17.210:3142"
 
 box:
-	sed "s|PROXY|$(PROXY)|g" http/preseed.cfg.orig > http/preseed.cfg
+	sed "s|PROXY|$(PROXY):3142|g" http/preseed.cfg.orig > http/preseed.cfg
 	@packer build -on-error=abort -force ubuntu-16.04.json
 
 test:

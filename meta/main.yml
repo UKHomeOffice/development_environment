@@ -4,15 +4,15 @@ dependencies: []
 
 galaxy_info:
   author: Mark Olliver
-  description: Ansible role to install setup fstab
+  description: Ansible role for development_environments
   license: MIT
-  min_ansible_version: 1.4
+  min_ansible_version: 2.1
   platforms:
   - name: Centos
     versions:
     - "7"
   - name: Ubuntu
     versions:
-    - "14.04"
+    - "16.04"
   categories:
     - system

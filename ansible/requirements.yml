@@ -8,7 +8,7 @@
   name: os-hardening
 
 - src: https://github.com/KEAOSolutions/ansible-ssh-hardening
-  version: aead6bc66f6f6f1cc73c061faf46775123ff903e
+  version: ec5d59269059373c9e001c5cccbd8a2d3fa06bea
   name: ssh-hardening
 
 - src: https://github.com/KEAOSolutions/ansible-docker
