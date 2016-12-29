@@ -26,3 +26,5 @@
     - { role: sublime }
     - { role: clamav }
     - { role: sysdig }
+    - { role: awesome-wm,
+        when: awesomewm }

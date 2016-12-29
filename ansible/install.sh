@@ -12,6 +12,7 @@ then
 fi
 
 OS=$(cat /etc/os-release|sed -e 's/"//'|grep ID_LIKE|awk -F '=' '{print $2}'|awk '{print $1}')
+AWM=${AWM:-false}
 
 if [[ ${OS} == "debian" ]]
 then
@@ -61,7 +62,7 @@ then
   fi
   cd /vagrant/ansible
   ansible-galaxy install -vv -r requirements.yml --force
-  PYTHONUNBUFFERED=1 ansible-playbook -i hostfile -v site.yml
+  PYTHONUNBUFFERED=1 ansible-playbook -i hostfile -v site.yml -e awesomewm=${AWM}
 else
   mkdir -p /opt/GIT
   cd /opt/GIT
@@ -78,7 +79,7 @@ else
   git checkout ${TAG}
   cd ansible
   ansible-galaxy install -r requirements.yml --force
-  ansible-playbook -i hostfile -v site.yml
+  ansible-playbook -i hostfile -v site.yml -e awesomewm=${AWM}
 fi
 
 if [[ ${OS} == "debian" ]]

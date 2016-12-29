@@ -51,7 +51,12 @@
   version: 0fd75ee566e06770bf9316e46660a9e318cd3bcd
   name: slack
 
-# TODO: replace this with our own fork
+# TODO: replace this with our own fork 
 - src: https://github.com/ssummer3/ansible-sysdig.git
   version: 8347b1f9c0914107d49665ff13ff02cd7d8c7eff
   name: sysdig
+
+# TODO use a UKHomeOffice/KEAOSolutions fork here
+- src: https://github.com/SamFrier/ansible-awesome-wm.git
+  version: d85b21c8c5f6b08a904cee1f41a2193e30738628
+  name: awesome-wm
