@@ -39,6 +39,10 @@
   version: 7bec450deec0d255158748ae817ee23148b28dd1
   name: fstab
 
+- src: https://github.com/KEAOSolutions/ansible-role-openjdk.git
+  version: 80369365d8fa10066cbe6dc57b0156d1c58ba877
+  name: openjdk
+
 - src: https://github.com/UKHomeOffice/ansible-packer
   version: 96cd678b919d1309458b8366b99fd36e3eb41553
   name: packer
