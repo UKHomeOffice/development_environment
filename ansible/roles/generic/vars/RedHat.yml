@@ -1,0 +1,33 @@
+---
+os_packages:
+  - dhclient
+  - iputils
+  - kernel-headers
+  - man-pages
+  - nc
+  - openssh
+  - openssh-server
+  - openssl-devel
+  - python
+  - python-pip
+  - python-httplib2
+  - redhat-lsb
+  - setransd
+  - tmpwatch
+  - tuned
+  - which
+  - vim-enhanced
+  - yum-plugin-changelog
+  - yum-plugin-downloadonly
+  - yum-plugin-ps
+  - yum-utils
+  - zlib-devel
+
+redhat_packages_6:
+  - pam_passwdqc
+
+os_packages_conflicting_remove:
+  - nfs-utils
+
+os_packages_gui:
+
