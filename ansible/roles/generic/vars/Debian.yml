@@ -1,0 +1,43 @@
+---
+os_packages:
+  - apparmor-profiles
+  - apparmor-utils
+  - bind9utils
+  - gnupg-pkcs11-scd
+  - iwatch
+  - iptables-persistent
+  - kernel-package
+  - libccid
+  - libpam-yubico
+  - libreadline-dev
+  - libykclient3
+  - libykpers-1-1
+  - netcat
+  - opensc
+  - opensc-pkcs11
+  - openssh-client
+  - pinenrty-curses
+  - pcscd
+  - pcsc-tools
+  - python3
+  - python3-pip
+  - python3-httplib2
+  - scdaemon
+  - strace
+  - systemd-container
+  - ubuntu-restricted-extras
+  - virtualenv
+  - yubikey-luks
+  - yubikey-ksm
+  - yubico-piv-tool
+  - vim-scripts
+  - zlib1g-dev
+
+os_packages_gui:
+  - pinentry-gtk2
+  - metacity-themes
+  - ubuntu-gnome-desktop
+  - network-manager-openvpn-gnome
+  - ykneomgr
+  - yubioath-desktop
+  - yubikey-personalization-gui
