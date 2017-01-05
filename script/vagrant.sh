@@ -15,7 +15,7 @@ if ! id -u $SSH_USER >/dev/null 2>&1; then
     echo "${SSH_USER}:${SSH_PASS}" | chpasswd
 fi
 
- Set up sudo
+# Set up sudo
 echo "==> Giving ${SSH_USER} sudo powers"
 echo "${SSH_USER}        ALL=(ALL)       NOPASSWD: ALL" >> /etc/sudoers.d/$SSH_USER
 chmod 440 /etc/sudoers.d/$SSH_USER
