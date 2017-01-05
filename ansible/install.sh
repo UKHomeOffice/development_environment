@@ -31,7 +31,7 @@ then
     rm -f /etc/apt/apt.conf.d/01_docker_proxy.conf
     rm -rf /root/.pip
   fi
-  systemctl disable apt-daily.timer
+  service apt-daily stop
   apt-get -y install python-pip git libssl-dev libffi-dev
   pip install 'docker-py==1.9.0'
 fi
@@ -92,7 +92,7 @@ fi
 
 if [[ ${OS} == "debian" ]]
 then
-  systemctl enable apt-daily.timer
+  service apt-daily start
 fi
 
 exit 0
