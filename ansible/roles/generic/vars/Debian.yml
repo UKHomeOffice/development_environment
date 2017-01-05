@@ -16,7 +16,7 @@ os_packages:
   - opensc
   - opensc-pkcs11
   - openssh-client
-  - pinenrty-curses
+  - pinentry-curses
   - pcscd
   - pcsc-tools
   - python3
