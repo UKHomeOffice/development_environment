@@ -10,3 +10,8 @@
 2. We need users to be added to the Docker group so that can run docker commands.
 
     Allowing users to run docker locally would enable them to start privileged containers, this in turn would give them root access on the base machine which is a break in the security of the platform. As such only the docker client can run locally against either a remote docker target or the local minikube instance.
+
+
+3. The install script encounters an exception at the step `pip install docker-py==1.9.0`.
+
+    If you are using a proxy, try destroying and rebuilding the cache.
