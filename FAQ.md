@@ -16,7 +16,9 @@
 
     If you are using a proxy, try destroying and rebuilding the cache:
 
-       docker stop cache
-       docker rm cache
-       docker rmi cache
-       docker build -t cache .
+    ``` 
+    docker stop cache
+    docker rm cache
+    docker rmi cache
+    docker build -t cache .
+    ```
