@@ -14,4 +14,9 @@
 
 3. The install script encounters an exception at the step `pip install docker-py==1.9.0`.
 
-    If you are using a proxy, try destroying and rebuilding the cache.
+    If you are using a proxy, try destroying and rebuilding the cache:
+
+       docker stop cache
+       docker rm cache
+       docker rmi cache
+       docker build -t cache .
