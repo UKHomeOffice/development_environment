@@ -32,16 +32,6 @@ This will install the latest tagged release, if you are developing and need a de
 curl https://raw.githubusercontent.com/UKHomeOffice/development_environment/develop/ansible/install.sh | TAG=develop bash
 ```
 
-### Additional tools
-
-If you are a DevOps user and want to install additional DevOps tools then also run:
-
-```
-curl https://raw.githubusercontent.com/UKHomeOffice/development_environment/develop/ansible/devops/install.sh | TAG=develop bash
-```
-
-If you want to use a different branch then replace the word `develop` in the URL and the `TAG` variable with the name of the branch you wish to use.
-
 ### Setting up the proxy
 Running the PXE server requires setting up a proxy. First, make sure the IP address specified in the Makefile is one that your local machine has on e.g. an ethernet connection. Then clone the following git repository:
 
