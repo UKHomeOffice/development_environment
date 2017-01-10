@@ -1,0 +1,5 @@
+---
+# TODO use a UKHomeOffice/KEAOSolutions fork here
+- src: https://github.com/SamFrier/ansible-awesome-wm.git
+  version: d85b21c8c5f6b08a904cee1f41a2193e30738628
+  name: awesome-wm
