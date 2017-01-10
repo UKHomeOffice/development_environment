@@ -4,7 +4,7 @@
   name: audit-hardening
 
 - src: https://github.com/KEAOSolutions/ansible-os-hardening
-  version: 06d606cd4f96596b898feea2903954e180315550
+  version: 8b53da393e1f3200c3d0920b9c1714739086493f
   name: os-hardening
 
 - src: https://github.com/KEAOSolutions/ansible-ssh-hardening
