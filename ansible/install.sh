@@ -16,7 +16,10 @@ AWM=${AWM:-false}
 
 if [[ ${OS} == "debian" ]]
 then
-  systemctl stop apt-daily.service
+  if [[ -d /vagrant ]]
+  then
+    systemctl stop apt-daily.service
+  fi
   if [[ ! -z ${PROXY} ]]
   then
     echo "Setting Proxy to: ${PROXY}"
@@ -90,7 +93,7 @@ else
   ansible-playbook -i hostfile -v site.yml -e awesomewm=${AWM}
 fi
 
-if [[ ${OS} == "debian" ]]
+if [[ ${OS} == "debian" && -d /vagrant ]]
 then
   systemctl start apt-daily.service
 fi
