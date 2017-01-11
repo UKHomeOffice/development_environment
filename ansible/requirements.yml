@@ -61,7 +61,7 @@
   name: sysdig
 
 - src: https://github.com/SamFrier/ansible-eclipse.git
-  version: 7912bc0413acea1a1429e8bba14a0801bf3d8bc4
+  version: 2a2b64598b9e8332e7b63ada1f8e1a30252954b8
   name: eclipse
 
 # TODO use a UKHomeOffice/KEAOSolutions fork here
