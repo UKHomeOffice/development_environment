@@ -22,6 +22,7 @@ then
     echo "Setting Proxy to: ${PROXY}"
     echo "Acquire::http::Proxy \"http://${PROXY}:3142/\";" > /etc/apt/apt.conf
     echo "Acquire::http::Proxy::apt.dockerproject.org \"DIRECT\";" > /etc/apt/apt.conf.d/01_docker_proxy.conf
+    echo "Acquire::http::Proxy::packagecloud.io \"DIRECT\";" > /etc/apt/apt.conf.d/02_packagecloud_proxy.conf
     export http_proxy=${PROXY}:3128
     mkdir -p /root/.pip
     echo "[global]\nindex-url = http://${PROXY}:3141/pypi/\n--trusted-host http://${PROXY}:3141\n\n[search]\nindex = http://${PROXY}:3141/pypi" > /root/.pip/pip.conf
@@ -30,6 +31,7 @@ then
     unset https_proxy
     rm -f /etc/apt/apt.conf
     rm -f /etc/apt/apt.conf.d/01_docker_proxy.conf
+    rm -f /etc/apt/apt.conf.d/02_packagecloud_proxy.conf
     rm -rf /root/.pip
   fi
   apt-get -y install python-pip git libssl-dev libffi-dev
@@ -59,6 +61,7 @@ then
   then
     echo "Acquire::http::Proxy \"http://${PROXY}:3142/\";" > /etc/apt/apt.conf
     echo "Acquire::http::Proxy::apt.dockerproject.org \"DIRECT\";" > /etc/apt/apt.conf.d/01_docker_proxy.conf
+    echo "Acquire::http::Proxy::packagecloud.io \"DIRECT\";" > /etc/apt/apt.conf.d/02_packagecloud_proxy.conf
     export http_proxy=${PROXY}:3128
     mkdir -p /root/.pip
     echo "[global]\nindex-url = http://${PROXY}:3141/pypi/\n--trusted-host http://${PROXY}:3141\n\n[search]\nindex = http://${PROXY}:3141/pypi" > /root/.pip/pip.conf
@@ -67,6 +70,7 @@ then
     unset https_proxy
     rm -f /etc/apt/apt.conf
     rm -f /etc/apt/apt.conf.d/01_docker_proxy.conf
+    rm -f /etc/apt/apt.conf.d/02_packagecloud_proxy.conf
   fi
   cd /vagrant/ansible
   ansible-galaxy install -vv -r requirements.yml --force
