@@ -34,7 +34,7 @@ curl https://raw.githubusercontent.com/UKHomeOffice/development_environment/deve
 
 If you also want to install awesome-wm then run the following (this method is subject to change if/when further DevOps-specific tools are added):
 
-``
+```
 curl https://raw.githubusercontent.com/UKHomeOffice/development_environment/develop/ansible/install.sh | TAG=develop AWM=true bash
 ```
 
