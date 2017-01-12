@@ -32,6 +32,12 @@ This will install the latest tagged release, if you are developing and need a de
 curl https://raw.githubusercontent.com/UKHomeOffice/development_environment/develop/ansible/install.sh | TAG=develop bash
 ```
 
+If you also want to install awesome-wm then run the following (this method is subject to change if/when further DevOps-specific tools are added):
+
+``
+curl https://raw.githubusercontent.com/UKHomeOffice/development_environment/develop/ansible/install.sh | TAG=develop AWM=true bash
+```
+
 ### Setting up the proxy
 Running the PXE server requires setting up a proxy. First, make sure the IP address specified in the Makefile is one that your local machine has on e.g. an ethernet connection. Then clone the following git repository:
 
