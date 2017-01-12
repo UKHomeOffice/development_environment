@@ -27,6 +27,6 @@
     - { role: sublime }
     - { role: clamav }
     - { role: sysdig }
-    - { role: eclipse }
+#    - { role: eclipse }
     - { role: awesome-wm,
         when: awesomewm }
