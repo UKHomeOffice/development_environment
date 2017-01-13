@@ -55,6 +55,12 @@ fi
 
 pip install --upgrade pip setuptools ansible
 
+# gpg ssl fudge for docker
+mkdir -p /root/.gnupg
+chmod 700 /root/.gnupg
+touch /root/.gnupg/dirmngr_ldapservers.conf
+chmod 600 /root/.gnupg/dirmngr_ldapservers.conf
+
 if [[ -d /vagrant ]]
 then
   if [ ${PROXY} ]
