@@ -31,3 +31,4 @@ os_packages_conflicting_remove:
 
 os_packages_gui:
 
+os_banned_packages:

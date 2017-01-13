@@ -34,6 +34,13 @@
     - "{{ os_packages_gui }}"
   when: "{{ install_os_packages_gui }}"
 
+- name: Remove Banned Packages
+  apt:
+    name: "{{ item }}"
+    state: absent
+  with_items:
+    - "{{ os_banned_packages }}"
+
 - name: Replace default keyboard language with English (UK)
   replace:
     dest=/etc/default/keyboard
