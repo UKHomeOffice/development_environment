@@ -1,0 +1,42 @@
+---
+- name: Update Apt Packages - Debian
+  apt:
+    upgrade: dist
+    update_cache: yes
+
+- name: Enable unattended auto update Ubuntu
+  copy:
+    dest: /etc/apt/apt.conf.d/50unattended-upgrades
+    src: 50unattended-upgrades
+    owner: root
+    group: root
+    mode: 0444
+
+- name: Install Generic Pre Reqs - Debian
+  apt:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - "{{ generic_packages }}"
+
+- name: Install Generic Packages - Debian
+  apt:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - "{{ os_packages }}"
+
+- name: Install Generic Packages GUI - Debian
+  apt:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - "{{ os_packages_gui }}"
+  when: "{{ install_os_packages_gui }}"
+
+- name: Replace default keyboard language with English (UK)
+  replace:
+    dest=/etc/default/keyboard
+    regexp='XKBLAYOUT=".."'
+    replace='XKBLAYOUT="gb"'
+    backup=no

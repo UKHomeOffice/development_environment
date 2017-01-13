@@ -1,0 +1,70 @@
+---
+- src: https://github.com/KEAOSolutions/ansible-audit-hardening.git
+  version: ada0897919405e99d5534def93a90ee628ae7e57
+  name: audit-hardening
+
+- src: https://github.com/KEAOSolutions/ansible-os-hardening
+  version: 06d606cd4f96596b898feea2903954e180315550
+  name: os-hardening
+
+- src: https://github.com/KEAOSolutions/ansible-ssh-hardening
+  version: ec5d59269059373c9e001c5cccbd8a2d3fa06bea
+  name: ssh-hardening
+
+- src: https://github.com/KEAOSolutions/ansible-docker
+  version: 9a925c7ba26352ab7c546bc1060f695ddaee4fc6
+  name: docker
+
+- src: https://github.com/KEAOSolutions/ansible-virtualbox
+  version: 7b387ae3a9770d3fc6485081c06335adc453ae9e
+  name: virtualbox
+
+- src: https://github.com/KEAOSolutions/ansible-role-firewall
+  version: 19f7754b90db7b4018ae63d8fbbec48934bcb818
+  name: iptables
+
+- src: https://github.com/KEAOSolutions/ansible-grub_cmdline.git
+  version: 52aa2300ba95582f5e72d8796745978c7682b256
+  name: grub-cmdline
+
+- src: https://github.com/UKHomeOffice/ansible-role-sublime.git
+  version: 3726595cc83231ccc06da4515911ecd4f533b609
+  name: sublime
+
+- src: https://github.com/KEAOSolutions/ansible-role-clamav.git
+  version: cc7403757891e4b61e95b9fed66b975554f9d6f1
+  name: clamav
+
+- src: https://github.com/KEAOSolutions/ansible-fstab.git
+  version: 7bec450deec0d255158748ae817ee23148b28dd1
+  name: fstab
+
+- src: https://github.com/KEAOSolutions/ansible-role-openjdk.git
+  version: 80369365d8fa10066cbe6dc57b0156d1c58ba877
+  name: openjdk
+
+- src: https://github.com/UKHomeOffice/ansible-packer
+  version: 96cd678b919d1309458b8366b99fd36e3eb41553
+  name: packer
+
+- src: https://github.com/UKHomeOffice/ansible-role-vagrant.git
+  version: 3cbc91cca808c2ed54de99ad765b163e24b38cb9
+  name: vagrant
+
+- src: https://github.com/KEAOSolutions/ansible-role-slack.git
+  version: 0fd75ee566e06770bf9316e46660a9e318cd3bcd
+  name: slack
+
+# TODO: replace this with our own fork 
+- src: https://github.com/ssummer3/ansible-sysdig.git
+  version: 8347b1f9c0914107d49665ff13ff02cd7d8c7eff
+  name: sysdig
+
+#- src: https://github.com/SamFrier/ansible-eclipse.git
+#  version: 2a2b64598b9e8332e7b63ada1f8e1a30252954b8
+#  name: eclipse
+
+# TODO use a UKHomeOffice/KEAOSolutions fork here
+- src: https://github.com/SamFrier/ansible-awesome-wm.git
+  version: d85b21c8c5f6b08a904cee1f41a2193e30738628
+  name: awesome-wm

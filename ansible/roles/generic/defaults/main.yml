@@ -1,0 +1,68 @@
+---
+install_os_packages_gui: true
+
+generic_packages:
+  - curl
+  - acpid
+  - bash-completion
+  - bzip2
+  - coreutils
+  - dmidecode
+  - dos2unix
+  - dstat
+  - e2fsprogs
+  - elinks
+  - groff
+  - htop
+  - jq
+  - inotify-tools
+  - irqbalance
+  - logrotate
+  - ltrace
+  - lvm2
+  - lynx
+  - ncdu
+  - ngrep
+  - nmap
+  - ntp
+  - ntpdate
+  - man
+  - mlocate
+  - mr
+  - mtr
+  - multitail
+  - openssh-server
+  - openvpn
+  - parted
+  - pciutils
+  - perl
+  - policycoreutils
+  - pv
+  - rcs
+  - rkhunter
+  - rng-tools
+  - rsync
+  - screen
+  - shellcheck
+  - sshuttle
+  - sudo
+  - sssd
+  - sssd-tools
+  - sssd-common
+  - sysstat
+  - strace
+  - tar
+  - tcl
+  - terminator
+  - tk
+  - tree
+  - unzip
+  - wget
+  - whois
+  - vim-common
+  - zip
+
+rk_email: root
+
+missing:
+  - nivada-current

@@ -1,0 +1,32 @@
+---
+- hosts: localhost
+  gather_facts: yes
+  vars_files:
+    - vars.yml
+  roles:
+    - { role: generic }
+    - { role: fstab }
+    - { role: os-hardening,
+        os_desktop_enable: true,
+        os_security_packages_list: ['xinetd','inetd','ypserv','telnet-server','rsh-server'] }
+    - { role: ssh-hardening }
+    - { role: iptables }
+    - { role: grub-cmdline,
+        grub_admin_password: 'grub.pbkdf2.sha512.10000.B3B4783ACF1A3C923EFDF0AD6591BA3DECBFB5FAEE1BEB53D4B84AC129466C53A5BB3E4B37DBB6B527C0B2D3A737D51D993FA54FDF5D02AF9EABD3604A364CB4.7729E46C8B4C5F272370748DCE9F4F07396297F3BE287D727D8E9684868A54177FCD95C99BDFDAA9FE94E773ED4CA42553030C250093E9D69D9A11D2C44C3CE7' }
+    - { role: audit-hardening }
+    - { role: openjdk }
+    - { role: docker }
+    - { role: kubectl }
+    - { role: minikube }
+#    - { role: docker_images }
+#    - { role: toolbox }
+    - { role: virtualbox }
+    - { role: vagrant }
+    - { role: packer }
+    - { role: slack }
+    - { role: sublime }
+    - { role: clamav }
+    - { role: sysdig }
+#    - { role: eclipse }
+    - { role: awesome-wm,
+        when: awesomewm }

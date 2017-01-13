@@ -21,7 +21,7 @@ All modules included here should work as a minimum under xfce4 with either an Ub
 To bootstrap this job please run:
 
 ```
-curl https://raw.githubusercontent.com/UKHomeOffice/development_environment/master/install.sh | bash
+curl https://raw.githubusercontent.com/UKHomeOffice/development_environment/master/ansible/install.sh | bash
 ```
 
 ### Development
@@ -29,8 +29,24 @@ curl https://raw.githubusercontent.com/UKHomeOffice/development_environment/mast
 This will install the latest tagged release, if you are developing and need a development version (not to be used on live machines but within Vagrant or test boxes) then you can run the following to pull and built the lastest development release:
 
 ```
-curl https://raw.githubusercontent.com/UKHomeOffice/development_environment/develop/install.sh | TAG=develop bash
+curl https://raw.githubusercontent.com/UKHomeOffice/development_environment/develop/ansible/install.sh | TAG=develop bash
 ```
 
+If you also want to install awesome-wm then run the following (this method is subject to change if/when further DevOps-specific tools are added):
 
+```
+curl https://raw.githubusercontent.com/UKHomeOffice/development_environment/develop/ansible/install.sh | TAG=develop AWM=true bash
+```
 
+### Setting up the proxy
+Running the PXE server requires setting up a proxy. First, make sure the IP address specified in the Makefile is one that your local machine has on e.g. an ethernet connection. Then clone the following git repository:
+
+```
+https://github.com/keaosolutions/docker-proxy-cache
+```
+
+Finally, start the proxy server by running the following commands in the new directory:
+
+    make run
+
+This builds and runs a local proxy with port 3128 exposed to your local network, please then update the Makefile for the development_environment project to have your local IP address as the proxy server.

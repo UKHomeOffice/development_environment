@@ -1,0 +1,50 @@
+---
+- name: Update Yum Packages - RedHat
+  yum:
+    update_cache: yes
+    name: "*"
+    state: latest
+
+- name: Install Generic Pre Reqs - RedHat
+  yum:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - "{{ generic_packages }}"
+
+- name: Install Generic Pre Reqs - RedHat
+  yum:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - "{{ os_packages }}"
+
+- name: Install Generic Pre Reqs - RedHat GUI
+  yum:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - "{{ os_packages_gui }}"
+  when: "{{ install_os_packages_gui }}"
+
+- name: Install Generic Pre Reqs - RedHat6
+  yum:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - "{{ redhat_packages_6 }}"
+  when: ansible_distribution_version <= '6.8'
+
+- name: Remove conflicting Packages - RedHat
+  yum:
+    name: "{{ item }}"
+    state: absent
+  with_items:
+    - "{{ os_packages_conflicting_remove }}"
+
+- name: Replace default keyboard language with English (UK)
+  replace:
+    dest=/etc/sysconfig/keyboard
+    regexp='KEYTABLE=".."'
+    replace='KEYTABLE="uk"'
+    backup=no

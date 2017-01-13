@@ -1,0 +1,66 @@
+---
+- name: Include variables suitable to our OS Family
+  include_vars: "{{ ansible_os_family }}.yml"
+
+- name: Include tasks suitable to our OS Family
+  include: "{{ ansible_os_family }}.yml"
+
+
+- name: Fix bash_completion grub
+  copy:
+    src: grub
+    dest: /etc/bash_completion.d/grub
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Fix bash_completion desktop-file-validate
+  copy:
+    src: grub
+    dest: /etc/bash_completion.d/desktop-file-validate
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Fix bash_completion insserv
+  copy:
+    src: grub
+    dest: /etc/bash_completion.d/insserv
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Setup Rootkit Hunter Cron
+  template:
+    src: rkhunter.sh.j2
+    dest: /etc/cron.daily/rkhunter.sh
+    owner: root
+    group: root
+    mode: 0755
+
+- name: Update rkhunter email config
+  template:
+    src: rkhunter.conf.j2
+    dest: /etc/rkhunter.conf
+    owner: root
+    group: root
+    mode: 0644
+  notify: rkhunter update
+
+- name: Start PCSC Daemon
+  systemd:
+    name: pcscd
+    state: started
+    enabled: True
+
+- name: force gpg2
+  file:
+    src: /usr/bin/gpg2
+    dest: /usr/bin/gpg
+    state: link
+    owner: root
+    group: root
+    mode: 0755
+    force: yes
+
+- debug: msg="Generic Package installation Complete"
