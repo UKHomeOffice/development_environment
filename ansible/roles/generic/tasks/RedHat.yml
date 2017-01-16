@@ -42,6 +42,13 @@
   with_items:
     - "{{ os_packages_conflicting_remove }}"
 
+- name: Remove Banned Packages
+  yum:
+    name: "{{ item }}"
+    state: absent
+  with_items:
+    - "{{ os_banned_packages }}"
+
 - name: Replace default keyboard language with English (UK)
   replace:
     dest=/etc/sysconfig/keyboard
