@@ -64,7 +64,6 @@
 #  version: 2a2b64598b9e8332e7b63ada1f8e1a30252954b8
 #  name: eclipse
 
-# TODO use a UKHomeOffice/KEAOSolutions fork here
-- src: https://github.com/SamFrier/ansible-awesome-wm.git
+- src: https://github.com/UKHomeOffice/ansible-awesome-wm.git
   version: 061cb6ad82098bb194f0b142e618dd9e0ab0221e
   name: awesome-wm
