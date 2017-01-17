@@ -60,6 +60,10 @@
   version: 8347b1f9c0914107d49665ff13ff02cd7d8c7eff
   name: sysdig
 
+- src: https://github.com/wtanaka/ansible-role-chrome.git
+  version: 370b0e7c31b953a46778520a5dea167c6263ec48
+  name: chrome
+
 #- src: https://github.com/SamFrier/ansible-eclipse.git
 #  version: 2a2b64598b9e8332e7b63ada1f8e1a30252954b8
 #  name: eclipse
