@@ -60,7 +60,7 @@
   version: 8347b1f9c0914107d49665ff13ff02cd7d8c7eff
   name: sysdig
 
-- src: https://github.com/wtanaka/ansible-role-chrome.git
+- src: https://github.com/UKHomeOffice/ansible-role-chrome.git
   version: 370b0e7c31b953a46778520a5dea167c6263ec48
   name: chrome
 
