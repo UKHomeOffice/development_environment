@@ -1,5 +1,5 @@
 ---
-install_os_packages_gui: true
+os_desktop_enable: true
 
 generic_packages:
   - curl
@@ -43,7 +43,6 @@ generic_packages:
   - rng-tools
   - rsync
   - screen
-  - shellcheck
   - sshuttle
   - sudo
   - sssd

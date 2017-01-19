@@ -24,6 +24,7 @@ os_packages:
   - python3-pip
   - python3-httplib2
   - scdaemon
+  - shellcheck
   - strace
   - systemd-container
   - ubuntu-restricted-extras
