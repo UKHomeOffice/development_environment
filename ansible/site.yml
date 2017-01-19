@@ -33,4 +33,6 @@
         when: "{{ os_desktop_enable }}" }
     - { role: awesome-wm,
         when: "{{ os_desktop_enable }} & {{ awesomewm }}" }
+    - { role: chrome
+        when: "{{ os_desktop_enable }}" }
     - { role: clamav }
