@@ -20,7 +20,7 @@ pxe:
 	@PROXY=$(PROXY) vagrant up pxe --provision
 
 develop:
-	curl https://raw.githubusercontent.com/UKHomeOffice/development_environment/develop/ansible/install.sh | TAG=develop bash
+	curl https://raw.githubusercontent.com/UKHomeOffice/development_environment/develop/ansible/install.sh | GIT_REF=develop bash
 
 clean:
 	@vagrant destroy -f ubuntu_test

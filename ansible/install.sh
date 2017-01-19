@@ -90,11 +90,10 @@ else
   fi
   cd development_environment
   git fetch
+  GIT_REF=${GIT_REF:-$(git tag | tail -n 1)}
+  echo "Switching to ref: ${GIT_REF}"
+  git reset --hard ${GIT_REF}
   git clean -fxd
-  git reset --hard HEAD
-  TAG=${TAG:-$(git tag | tail -n 1)}
-  echo "Running with Tag: ${TAG}"
-  git checkout ${TAG}
   cd ansible
   ansible-galaxy install -r requirements.yml --force
   ansible-playbook -i hostfile -v site.yml -e awesomewm=${AWM}
