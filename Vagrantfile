@@ -24,7 +24,7 @@ Vagrant.configure("2") do |config|
     end
   end
   config.vm.define "centos7test" do |centos7test|
-    centos7test.vm.box = "ubuntu16.04"
+    centos7test.vm.box = "bento/centos-7.3"
     centos7test.vm.network "public_network", ip: "192.168.87.251"
     centos7test.ssh.username = "vagrant"
     centos7test.ssh.password = "vagrant"
@@ -48,7 +48,7 @@ Vagrant.configure("2") do |config|
     end
   end
   config.vm.define "centos6test" do |centos6test|
-    centos6test.vm.box = "ubuntu16.04"
+    centos6test.vm.box = "bentos/centos-6.8"
     centos6test.vm.network "public_network", ip: "192.168.87.252"
     centos6test.ssh.username = "vagrant"
     centos6test.ssh.password = "vagrant"
