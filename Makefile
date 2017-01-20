@@ -46,6 +46,12 @@ ubuntuclean:
 	@vagrant destroy -f ubuntutest
 	@vagrant destroy -f pxe
 
+centos7clean:
+	@vagrant destroy -f centos7test
+
+centos6clean:
+	@vagrant destroy -f centos6test
+
 packerclean:
 	@rm -rf packer_cache/*
 
