@@ -64,6 +64,7 @@
     name: pcscd
     state: started
     enabled: True
+  when: (ansible_distribution_version >= '7' or ansible_os_family == 'Debian') 
 
 - name: force gpg2
   file:
