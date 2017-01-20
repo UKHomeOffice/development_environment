@@ -17,22 +17,22 @@
     - { role: openjdk }
     - { role: docker }
     - { role: kubectl }
-    - { role: minikube
+    - { role: minikube,
         when: "{{ os_desktop_enable }}" }
-    - { role: virtualbox
+    - { role: virtualbox,
         when: "{{ os_desktop_enable }}" }
-    - { role: vagrant
+    - { role: vagrant,
         when: "{{ os_desktop_enable }}" }
-    - { role: packer
+    - { role: packer,
         when: "{{ os_desktop_enable }}" }
-    - { role: slack
+    - { role: slack,
         when: "{{ os_desktop_enable }}" }
-    - { role: sublime
+    - { role: sublime,
         when: "{{ os_desktop_enable }}" }
-    - { role: sysdig
+    - { role: sysdig,
         when: "{{ os_desktop_enable }}" }
     - { role: awesome-wm,
         when: "{{ os_desktop_enable }} & {{ awesomewm }}" }
-    - { role: chrome
+    - { role: chrome,
         when: "{{ os_desktop_enable }}" }
     - { role: clamav }
