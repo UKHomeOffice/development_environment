@@ -39,14 +39,15 @@ curl https://raw.githubusercontent.com/UKHomeOffice/development_environment/deve
 ```
 
 ### Setting up the proxy
-Running the PXE server requires setting up a proxy. First, make sure the IP address specified in the Makefile is one that your local machine has on e.g. an ethernet connection. Then clone the following git repository:
+There is a proxy server which is required for use by the PXE server and is also use for development to cache files both for Ubuntu and CentOS releases. The proxy server is based on an Ubuntu 16.04 Virtual Box guest, to run this do:
 
 ```
-https://github.com/keaosolutions/docker-proxy-cache
+make proxycache
 ```
 
-Finally, start the proxy server by running the following commands in the new directory:
+To destroy the cache you can do:
 
-    make run
+```
+make proxyclean
+```
 
-This builds and runs a local proxy with port 3128 exposed to your local network, please then update the Makefile for the development_environment project to have your local IP address as the proxy server.

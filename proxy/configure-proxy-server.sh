@@ -14,8 +14,10 @@ apt install -y squid apt-cacher-ng python python-pip
 
 pip install -q -U devpi-server
 
+/bin/systemctl stop squid
+cp /etc/squid/squid.conf /etc/squid/squid.conf.orig
 cp /vagrant/proxy/squid.conf /etc/squid/squid.conf
-
+/usr/sbin/squid -z
 /bin/systemctl enable squid
 /bin/systemctl start squid
 /bin/systemctl enable apt-cacher-ng
