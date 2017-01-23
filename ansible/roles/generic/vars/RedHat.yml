@@ -8,6 +8,8 @@ os_packages:
   - openssh
   - openssh-server
   - openssl-devel
+  - pcsc-lite
+  - pcsc-tools
   - python
   - python-pip
   - python-httplib2
@@ -26,9 +28,11 @@ os_packages:
 redhat_packages_6:
   - pam_passwdqc
 
+
 os_packages_conflicting_remove:
   - nfs-utils
 
 os_packages_gui:
+
 
 os_banned_packages:

@@ -1,0 +1,10 @@
+[unit]
+Description=devpi: PyPI server and packaging/testing/release tool
+AssertPathExists=/home/vagrant/.devpi/server
+
+[Service]
+User=vagrant
+Type=forking
+ExecStartPre=-/usr/bin/python /usr/local/bin/devpi-server --init
+ExecStart=/usr/bin/python /usr/local/bin/devpi-server --start --host 0.0.0.0
+Nice=5

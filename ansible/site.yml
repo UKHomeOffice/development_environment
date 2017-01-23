@@ -1,5 +1,5 @@
 ---
-- hosts: localhost
+- hosts: "{{ variable_host | default('localhost') }}"
   gather_facts: yes
   vars_files:
     - vars.yml
@@ -17,17 +17,22 @@
     - { role: openjdk }
     - { role: docker }
     - { role: kubectl }
-    - { role: minikube }
-#    - { role: docker_images }
-#    - { role: toolbox }
-    - { role: virtualbox }
-    - { role: vagrant }
-    - { role: packer }
-    - { role: slack }
-    - { role: sublime }
-    - { role: sysdig }
-#    - { role: eclipse }
-    - { role: chrome }
+    - { role: minikube,
+        when: "{{ os_desktop_enable }}" }
+    - { role: virtualbox,
+        when: "{{ os_desktop_enable }}" }
+    - { role: vagrant,
+        when: "{{ os_desktop_enable }}" }
+    - { role: packer,
+        when: "{{ os_desktop_enable }}" }
+    - { role: slack,
+        when: "{{ os_desktop_enable }}" }
+    - { role: sublime,
+        when: "{{ os_desktop_enable }}" }
+    - { role: sysdig,
+        when: "{{ os_desktop_enable }}" }
     - { role: awesome-wm,
-        when: awesomewm }
+        when: "{{ os_desktop_enable }} and {{ awesomewm }}"}
+    - { role: chrome,
+        when: "{{ os_desktop_enable }}" }
     - { role: clamav }

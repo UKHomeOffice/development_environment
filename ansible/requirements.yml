@@ -1,10 +1,10 @@
 ---
-- src: https://github.com/KEAOSolutions/ansible-audit-hardening.git
+- src: https://github.com/KEAOSolutions/ansible-audit-hardening
   version: ada0897919405e99d5534def93a90ee628ae7e57
   name: audit-hardening
 
 - src: https://github.com/KEAOSolutions/ansible-os-hardening
-  version: 1d6c08cca7a570ace3f7ab48175c272872861ca9
+  version: b8926a5b9b45b1944450d922d7091cbecfd22970
   name: os-hardening
 
 - src: https://github.com/KEAOSolutions/ansible-ssh-hardening
@@ -12,7 +12,7 @@
   name: ssh-hardening
 
 - src: https://github.com/KEAOSolutions/ansible-docker
-  version: 9a925c7ba26352ab7c546bc1060f695ddaee4fc6
+  version: 0ee5b7707cbe814541524a3cd22730c318080633
   name: docker
 
 - src: https://github.com/KEAOSolutions/ansible-virtualbox
@@ -23,23 +23,23 @@
   version: 19f7754b90db7b4018ae63d8fbbec48934bcb818
   name: iptables
 
-- src: https://github.com/KEAOSolutions/ansible-grub_cmdline.git
-  version: 52aa2300ba95582f5e72d8796745978c7682b256
+- src: https://github.com/KEAOSolutions/ansible-grub_cmdline
+  version: 00b8874bd5131a4eee3b30da1fdb028445607e07
   name: grub-cmdline
 
-- src: https://github.com/UKHomeOffice/ansible-role-sublime.git
+- src: https://github.com/UKHomeOffice/ansible-role-sublime
   version: 3726595cc83231ccc06da4515911ecd4f533b609
   name: sublime
 
-- src: https://github.com/KEAOSolutions/ansible-role-clamav.git
-  version: cc7403757891e4b61e95b9fed66b975554f9d6f1
+- src: https://github.com/KEAOSolutions/ansible-role-clamav
+  version: 1790baba671caef62539ed072e13494f9ca4ef83
   name: clamav
 
 - src: https://github.com/KEAOSolutions/ansible-fstab.git
   version: 7bec450deec0d255158748ae817ee23148b28dd1
   name: fstab
 
-- src: https://github.com/KEAOSolutions/ansible-role-openjdk.git
+- src: https://github.com/KEAOSolutions/ansible-role-openjdk
   version: 80369365d8fa10066cbe6dc57b0156d1c58ba877
   name: openjdk
 
@@ -47,26 +47,22 @@
   version: 96cd678b919d1309458b8366b99fd36e3eb41553
   name: packer
 
-- src: https://github.com/UKHomeOffice/ansible-role-vagrant.git
+- src: https://github.com/UKHomeOffice/ansible-role-vagrant
   version: 3cbc91cca808c2ed54de99ad765b163e24b38cb9
   name: vagrant
 
-- src: https://github.com/KEAOSolutions/ansible-role-slack.git
+- src: https://github.com/KEAOSolutions/ansible-role-slack
   version: 0fd75ee566e06770bf9316e46660a9e318cd3bcd
   name: slack
 
-- src: https://github.com/UKHomeOffice/ansible-sysdig.git
+- src: https://github.com/UKHomeOffice/ansible-sysdig
   version: 8347b1f9c0914107d49665ff13ff02cd7d8c7eff
   name: sysdig
 
-- src: https://github.com/UKHomeOffice/ansible-role-chrome.git
+- src: https://github.com/UKHomeOffice/ansible-role-chrome
   version: 370b0e7c31b953a46778520a5dea167c6263ec48
   name: chrome
 
-#- src: https://github.com/SamFrier/ansible-eclipse.git
-#  version: 2a2b64598b9e8332e7b63ada1f8e1a30252954b8
-#  name: eclipse
-
-- src: https://github.com/UKHomeOffice/ansible-awesome-wm.git
+- src: https://github.com/UKHomeOffice/ansible-awesome-wm
   version: 061cb6ad82098bb194f0b142e618dd9e0ab0221e
   name: awesome-wm

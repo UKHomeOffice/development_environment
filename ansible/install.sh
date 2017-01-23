@@ -13,6 +13,10 @@ fi
 
 OS=$(cat /etc/os-release|sed -e 's/"//'|grep ID_LIKE|awk -F '=' '{print $2}'|awk '{print $1}')
 AWM=${AWM:-false}
+DESKTOP=${DESKTOP:-true}
+
+echo "Install Desktop: ${DESKTOP}"
+echo "Installing AWM: ${AWM}"
 
 if [[ ${OS} == "debian" ]]
 then
@@ -43,8 +47,11 @@ then
   if [[ ! -z ${PROXY} ]]
   then
     echo "Setting Proxy to: ${PROXY}"
+    sed -i -n -e "/^proxy/!p" -e "aproxy=http://${PROXY}:3128" /etc/yum.conf
+    sed -i -e 's/^#baseurl/baseurl/g' -e 's/^mirrorlist/#mirrorlist/g' /etc/yum.repos.d/*
     export http_proxy=${PROXY}
   else
+    sed -n -e "/proxy/!p" > /etc/yum.conf
     unset http_proxy
     unset https_proxy
   fi
@@ -63,24 +70,9 @@ chmod 600 /root/.gnupg/dirmngr_ldapservers.conf
 
 if [[ -d /vagrant ]]
 then
-  if [ ${PROXY} ]
-  then
-    echo "Acquire::http::Proxy \"http://${PROXY}:3142/\";" > /etc/apt/apt.conf
-    echo "Acquire::http::Proxy::apt.dockerproject.org \"DIRECT\";" > /etc/apt/apt.conf.d/01_docker_proxy.conf
-    echo "Acquire::http::Proxy::packagecloud.io \"DIRECT\";" > /etc/apt/apt.conf.d/02_packagecloud_proxy.conf
-    export http_proxy=${PROXY}:3128
-    mkdir -p /root/.pip
-    echo "[global]\nindex-url = http://${PROXY}:3141/pypi/\n--trusted-host http://${PROXY}:3141\n\n[search]\nindex = http://${PROXY}:3141/pypi" > /root/.pip/pip.conf
-  else
-    unset http_proxy
-    unset https_proxy
-    rm -f /etc/apt/apt.conf
-    rm -f /etc/apt/apt.conf.d/01_docker_proxy.conf
-    rm -f /etc/apt/apt.conf.d/02_packagecloud_proxy.conf
-  fi
   cd /vagrant/ansible
   ansible-galaxy install -vv -r requirements.yml --force
-  PYTHONUNBUFFERED=1 ansible-playbook -i hostfile -v site.yml -e awesomewm=${AWM}
+  PYTHONUNBUFFERED=1 ansible-playbook -i hostfile -v site.yml -e awesomewm=${AWM} -e os_desktop_enable=${DESKTOP}
 else
   mkdir -p /opt/GIT
   cd /opt/GIT
@@ -97,7 +89,7 @@ else
   git checkout ${TAG}
   cd ansible
   ansible-galaxy install -r requirements.yml --force
-  ansible-playbook -i hostfile -v site.yml -e awesomewm=${AWM}
+  ansible-playbook -i hostfile -v site.yml -e awesomewm=${AWM} -e os_desktop_enable=${DESKTOP}
 fi
 
 if [[ ${OS} == "debian" ]]

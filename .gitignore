@@ -5,6 +5,7 @@ ansible/roles/grub-cmdline
 ansible/roles/audit-hardening
 ansible/roles/virtualbox
 ansible/roles/docker
+ansible/roles/chrome
 ansible/roles/clamav
 ansible/roles/fstab
 ansible/roles/slack
@@ -12,8 +13,13 @@ ansible/roles/sysdig
 ansible/roles/vagrant
 ansible/roles/packer
 ansible/roles/sublime
+ansible/roles/andrewrothstein.unarchive-deps/
+ansible/roles/awesome-wm/
+ansible/roles/openjdk/
 packer_cache/*
 *.box
+*.retry
 iso/*
 http/preseed.cfg
 .vagrant/*
+ubuntu-xenial-16.04-cloudimg-console.log

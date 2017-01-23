@@ -25,7 +25,7 @@
     state: latest
   with_items:
     - "{{ os_packages_gui }}"
-  when: "{{ install_os_packages_gui }}"
+  when: "{{ os_desktop_enable }}"
 
 - name: Install Generic Pre Reqs - RedHat6
   yum:
@@ -48,10 +48,5 @@
     state: absent
   with_items:
     - "{{ os_banned_packages }}"
-
-- name: Replace default keyboard language with English (UK)
-  replace:
-    dest=/etc/sysconfig/keyboard
-    regexp='KEYTABLE=".."'
-    replace='KEYTABLE="uk"'
-    backup=no
+  when:
+    - "{{ os_banned_packages }}"

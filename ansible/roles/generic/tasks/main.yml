@@ -5,6 +5,18 @@
 - name: Include tasks suitable to our OS Family
   include: "{{ ansible_os_family }}.yml"
 
+- name: Check if Keyboard settings file exists
+  stat:
+    path: "/etc/sysconfig/keyboard"
+  register: keyboard
+
+- name: Replace default keyboard language with English (UK)
+  replace:
+    dest: "/etc/sysconfig/keyboard"
+    regexp: 'KEYTABLE=".."'
+    replace: 'KEYTABLE="uk"'
+    backup: no
+  when: "{{ keyboard.stat.exists == True }}"
 
 - name: Fix bash_completion grub
   copy:
@@ -52,6 +64,7 @@
     name: pcscd
     state: started
     enabled: True
+  when: (ansible_distribution_version >= '7' or ansible_os_family == 'Debian') 
 
 - name: force gpg2
   file:
