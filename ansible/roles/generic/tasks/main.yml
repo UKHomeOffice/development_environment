@@ -76,4 +76,20 @@
     mode: 0755
     force: yes
 
+- name: Chown files on mounted USB
+  copy:
+    src: chown_usb
+    dest: /usr/local/bin/chown_usb
+    owner: root
+    group: root
+    mode: 0755
+
+- name: allow members of sudo to use the following commands
+  lineinfile:
+    dest: /etc/sudoers
+    state: present
+    regexp: '^%sudo'
+    line: '%sudo	ALL=(ALL:ALL) /usr/local/bin/chown_usb'
+    validate: 'visudo -cf %s'
+
 - debug: msg="Generic Package installation Complete"
