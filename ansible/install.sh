@@ -13,6 +13,10 @@ fi
 
 OS=$(cat /etc/os-release|sed -e 's/"//'|grep ID_LIKE|awk -F '=' '{print $2}'|awk '{print $1}')
 AWM=${AWM:-false}
+DESKTOP=${DESKTOP:-true}
+
+echo "Install Desktop: ${DESKTOP}"
+echo "Installing AWM: ${AWM}"
 
 if [[ ${OS} == "debian" ]]
 then
@@ -68,7 +72,7 @@ if [[ -d /vagrant ]]
 then
   cd /vagrant/ansible
   ansible-galaxy install -vv -r requirements.yml --force
-  PYTHONUNBUFFERED=1 ansible-playbook -i hostfile -v site.yml -e awesomewm=${AWM}
+  PYTHONUNBUFFERED=1 ansible-playbook -i hostfile -v site.yml -e awesomewm=${AWM} -e os_desktop_enable=${DESKTOP}
 else
   mkdir -p /opt/GIT
   cd /opt/GIT
@@ -85,7 +89,7 @@ else
   git checkout ${TAG}
   cd ansible
   ansible-galaxy install -r requirements.yml --force
-  ansible-playbook -i hostfile -v site.yml -e awesomewm=${AWM}
+  ansible-playbook -i hostfile -v site.yml -e awesomewm=${AWM} -e os_desktop_enable=${DESKTOP}
 fi
 
 if [[ ${OS} == "debian" ]]

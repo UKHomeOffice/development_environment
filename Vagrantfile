@@ -43,8 +43,8 @@ Vagrant.configure("2") do |config|
       v.customize ["modifyvm", :id, "--clipboard", "bidirectional"]
     end
     centos7test.vm.provision "shell" do |s|
-      s.inline = "PROXY=$1/bin/bash AWM=$2 /vagrant/ansible/install.sh"
-      s.args = "#{ENV['PROXY']} #{ENV['AWM']}"
+      s.inline = "PROXY=$1/bin/bash AWM=$2 DESKTOP=$3 /vagrant/ansible/install.sh"
+      s.args = "#{ENV['PROXY']} #{ENV['AWM']} #{ENV['DESKTOP']}"
     end
   end
   config.vm.define "centos6test" do |centos6test|
@@ -67,8 +67,8 @@ Vagrant.configure("2") do |config|
       v.customize ["modifyvm", :id, "--clipboard", "bidirectional"]
     end
     centos6test.vm.provision "shell" do |s|
-      s.inline = "PROXY=$1/bin/bash AWM=$2 /vagrant/ansible/install.sh"
-      s.args = "#{ENV['PROXY']} #{ENV['AWM']}"
+      s.inline = "PROXY=$1/bin/bash AWM=$2 DESKTOP=$3 /vagrant/ansible/install.sh"
+      s.args = "#{ENV['PROXY']} #{ENV['AWM']} #{ENV['DESKTOP']}"
     end
   end
   config.vm.define "ubuntutest" do |ubuntutest|
@@ -91,8 +91,8 @@ Vagrant.configure("2") do |config|
       v.customize ["modifyvm", :id, "--clipboard", "bidirectional"]
     end
     ubuntutest.vm.provision "shell" do |s|
-      s.inline = "PROXY=$1/bin/bash AWM=$2 /vagrant/ansible/install.sh"
-      s.args = "#{ENV['PROXY']} #{ENV['AWM']}"
+      s.inline = "PROXY=$1/bin/bash AWM=$2 DESKTOP=$3 /vagrant/ansible/install.sh"
+      s.args = "#{ENV['PROXY']} #{ENV['AWM']} #{ENV['DESKTOP']}"
     end
   end
   config.vm.define "pxe" do |pxe|

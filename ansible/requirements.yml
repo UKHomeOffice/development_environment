@@ -4,7 +4,7 @@
   name: audit-hardening
 
 - src: https://github.com/KEAOSolutions/ansible-os-hardening
-  version: 2ab224a511d80d2fe3baf5e2e475ff64705f55bc
+  version: b8926a5b9b45b1944450d922d7091cbecfd22970
   name: os-hardening
 
 - src: https://github.com/KEAOSolutions/ansible-ssh-hardening
@@ -12,7 +12,7 @@
   name: ssh-hardening
 
 - src: https://github.com/KEAOSolutions/ansible-docker
-  version: 9a925c7ba26352ab7c546bc1060f695ddaee4fc6
+  version: 0ee5b7707cbe814541524a3cd22730c318080633
   name: docker
 
 - src: https://github.com/KEAOSolutions/ansible-virtualbox
@@ -24,7 +24,7 @@
   name: iptables
 
 - src: https://github.com/KEAOSolutions/ansible-grub_cmdline
-  version: 52aa2300ba95582f5e72d8796745978c7682b256
+  version: 00b8874bd5131a4eee3b30da1fdb028445607e07
   name: grub-cmdline
 
 - src: https://github.com/UKHomeOffice/ansible-role-sublime
@@ -32,7 +32,7 @@
   name: sublime
 
 - src: https://github.com/KEAOSolutions/ansible-role-clamav
-  version: cc7403757891e4b61e95b9fed66b975554f9d6f1
+  version: 1790baba671caef62539ed072e13494f9ca4ef83
   name: clamav
 
 - src: https://github.com/KEAOSolutions/ansible-fstab.git

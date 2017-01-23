@@ -3,14 +3,11 @@ PROXY := "192.168.87.250"
 
 export PROXY
 
-getboxes:
-#	@vagrant box add bento/ubuntu-16.04 --force
-	@vagrant box add bento/centos-7.3 --force
-	@vagrant box add bento/centos-6.8 --force
-
 removeboxes:
 	@vagrant box remove ubuntu16.04
 	@vagrant box remove bento/ubuntu-16.04
+	@vagrant box remove bento/centos-7.3
+	@vagrant box remove bento/centos-6.8
 
 proxycache:
 	@vagrant up proxy --provision
@@ -21,19 +18,19 @@ box:
 
 ubuntutest:
 	@vagrant box add ubuntu16.04 ./builds/ubuntu-16.04-amd64-virtualbox.box --force
-	@PROXY=$(PROXY) AWM=false vagrant up ubuntutest --provision
+	@PROXY=$(PROXY) AWM=false DESKTOP=true vagrant up ubuntutest --provision
 
 centos7test:
 	#@vagrant box add ubuntu16.04 ./builds/centos-7-amd64-virtualbox.box --force
-	@PROXY=$(PROXY) AWM=false vagrant up centos7test --provision
+	@PROXY=$(PROXY) AWM=false DESKTOP=false vagrant up centos7test --provision
 
 centos6test:
 	#@vagrant box add ubuntu16.04 ./builds/centos-6-amd64-virtualbox.box --force
-	@PROXY=$(PROXY) AWM=false vagrant up centos6test --provision
+	@PROXY=$(PROXY) AWM=false DESKTOP=false vagrant up centos6test --provision
 
 awmtest:
 	@vagrant box add ubuntu16.04 ./builds/ubuntu-16.04-amd64-virtualbox.box --force
-	@PROXY=$(PROXY) AWM=true vagrant up ubuntutest --provision
+	@PROXY=$(PROXY) AWM=true DESKTOP=true vagrant up ubuntutest --provision
 
 pxe:
 	@vagrant box add ubuntu16.04 ./builds/ubuntu-16.04-amd64-virtualbox.box --force
