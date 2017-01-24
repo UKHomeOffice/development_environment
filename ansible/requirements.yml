@@ -66,3 +66,7 @@
 - src: https://github.com/UKHomeOffice/ansible-awesome-wm
   version: 061cb6ad82098bb194f0b142e618dd9e0ab0221e
   name: awesome-wm
+
+- src: https://github.com/UKHomeOffice/ansible-role-rsyslog.git
+  version: 786f6f7a6c3d9659cfe2092a34e2bed773e6da28
+  name: rsyslog
