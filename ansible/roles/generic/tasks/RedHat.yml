@@ -27,14 +27,6 @@
     - "{{ os_packages_gui }}"
   when: (os_desktop_enable and os_packages_gui)
 
-- name: Install Generic Pre Reqs - RedHat6
-  yum:
-    name: "{{ item }}"
-    state: latest
-  with_items:
-    - "{{ redhat_packages_6 }}"
-  when: ansible_distribution_version <= '7'
-
 - name: Remove conflicting Packages - RedHat
   yum:
     name: "{{ item }}"
@@ -50,3 +42,19 @@
     - "{{ os_banned_packages }}"
   when:
     - "{{ os_banned_packages }}"
+
+- stat:
+    path: /etc/sysconfig/selinux
+  register: selinux
+
+- name: check selinux
+  yum:
+    name: libselinux-python
+    state: present
+  when: selinux.stat.islnk is defined
+
+- name: check selinux
+  yum:
+    name: libselinux-python
+    state: absent
+  when: selinux.stat.islnk is not defined

@@ -11,7 +11,17 @@ then
   fi
 fi
 
-OS=$(cat /etc/os-release|sed -e 's/"//'|grep ID_LIKE|awk -F '=' '{print $2}'|awk '{print $1}')
+if [[ -f /etc/os-release ]]
+then
+  OS=$(cat /etc/os-release|sed -e 's/"//'|grep ID_LIKE|awk -F '=' '{print $2}'|awk '{print $1}')
+elif [[ -f /etc/redhat-release ]]
+then
+  OS=$(cat /etc/redhat-release | awk '{print tolower($1)}')
+else
+  echo "OS Unknown"
+  exit 2
+fi
+
 AWM=${AWM:-false}
 DESKTOP=${DESKTOP:-true}
 
@@ -40,9 +50,7 @@ then
   fi
   apt-get -y install python-pip git libssl-dev libffi-dev
   pip install 'docker-py==1.9.0'
-fi
-
-if [[ ${OS} == "rhel" ]]
+elif [[ ${OS} == "rhel" ]] || [[ ${OS} == "centos" ]]
 then
   if [[ ! -z ${PROXY} ]]
   then
@@ -56,7 +64,7 @@ then
     unset https_proxy
   fi
   yum install -y epel-release 
-  yum install -y git python-pip gcc-c++ openssl-devel python-devel
+  yum install -y git python-pip gcc-c++ openssl-devel python-devel libffi-devel
   pip install 'docker-py==1.9.0'
 fi
 

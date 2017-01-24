@@ -8,6 +8,7 @@ os_packages:
   - openssh
   - openssh-server
   - openssl-devel
+  - pam_passwdqc
   - pcsc-lite
   - pcsc-tools
   - python
@@ -18,13 +19,13 @@ os_packages:
   - tmpwatch
   - tuned
   - which
-  - whois
   - vim-enhanced
   - yum-plugin-changelog
   - yum-plugin-downloadonly
   - yum-plugin-ps
   - yum-utils
   - zlib-devel
+
 
 os_packages_conflicting_remove:
   - nfs-utils
