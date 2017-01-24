@@ -1,5 +1,6 @@
 ---
 os_packages:
+  - bind-utils
   - dhclient
   - iputils
   - kernel-headers
