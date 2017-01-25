@@ -32,7 +32,7 @@
   name: sublime
 
 - src: https://github.com/KEAOSolutions/ansible-role-clamav
-  version: 35c9f493bae3b6fd0c22038f33599730da6f00c7
+  version: b13b993a15801c660c24018d8b26183a9c84c221
   name: clamav
 
 - src: https://github.com/KEAOSolutions/ansible-fstab.git
