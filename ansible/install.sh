@@ -87,6 +87,7 @@ else
   TAG=${TAG:-$(git tag | tail -n 1)}
   echo "Running with Tag: ${TAG}"
   git checkout ${TAG}
+  git pull --ff-only
   cd ansible
   ansible-galaxy install -r requirements.yml --force
   ansible-playbook -i hostfile -v site.yml -e awesomewm=${AWM} -e os_desktop_enable=${DESKTOP}
