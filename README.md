@@ -29,13 +29,15 @@ curl https://raw.githubusercontent.com/UKHomeOffice/development_environment/mast
 This will install the latest tagged release, if you are developing and need a development version (not to be used on live machines but within Vagrant or test boxes) then you can run the following to pull and built the lastest development release:
 
 ```
-curl https://raw.githubusercontent.com/UKHomeOffice/development_environment/develop/ansible/install.sh | GIT_REF=develop bash
+export GIT_REF=develop
+curl https://raw.githubusercontent.com/UKHomeOffice/development_environment/${GIT_REF}/ansible/install.sh | bash
 ```
 
 If you also want to install awesome-wm then run the following (this method is subject to change if/when further DevOps-specific tools are added):
 
 ```
-curl https://raw.githubusercontent.com/UKHomeOffice/development_environment/develop/ansible/install.sh | GIT_REF=develop AWM=true bash
+export GIT_REF=develop
+curl https://raw.githubusercontent.com/UKHomeOffice/development_environment/${GIT_REF}/ansible/install.sh | AWM=true bash
 ```
 
 ### Setting up the proxy

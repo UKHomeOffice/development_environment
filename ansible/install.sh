@@ -8,10 +8,21 @@ then
   if [[ ${PROXY} == */* ]]
   then
     PROXY=$(echo ${PROXY} | awk -F'/' '{print $1}')
+    echo "Proxy is set to: ${PROXY}"
   fi
 fi
 
-OS=$(cat /etc/os-release|sed -e 's/"//'|grep ID_LIKE|awk -F '=' '{print $2}'|awk '{print $1}')
+if [[ -f /etc/os-release ]]
+then
+  OS=$(cat /etc/os-release|sed -e 's/"//'|grep ID_LIKE|awk -F '=' '{print $2}'|awk '{print $1}')
+elif [[ -f /etc/redhat-release ]]
+then
+  OS=$(cat /etc/redhat-release | awk '{print tolower($1)}')
+else
+  echo "OS Unknown"
+  exit 2
+fi
+
 AWM=${AWM:-false}
 DESKTOP=${DESKTOP:-true}
 
@@ -40,23 +51,20 @@ then
   fi
   apt-get -y install python-pip git libssl-dev libffi-dev
   pip install 'docker-py==1.9.0'
-fi
-
-if [[ ${OS} == "rhel" ]]
+elif [[ ${OS} == "rhel" ]] || [[ ${OS} == "centos" ]]
 then
+  sed -i -e "/^proxy/d" /etc/yum.conf 
+  unset http_proxy
+  unset https_proxy
   if [[ ! -z ${PROXY} ]]
   then
     echo "Setting Proxy to: ${PROXY}"
-    sed -i -n -e "/^proxy/!p" -e "aproxy=http://${PROXY}:3128" /etc/yum.conf
+    awk "1; END {print \"proxy=http://${PROXY}:3128\"}" /etc/yum.conf > /etc/yum.conf.tmp && mv /etc/yum.conf.tmp /etc/yum.conf 
     sed -i -e 's/^#baseurl/baseurl/g' -e 's/^mirrorlist/#mirrorlist/g' /etc/yum.repos.d/*
     export http_proxy=${PROXY}
-  else
-    sed -n -e "/proxy/!p" > /etc/yum.conf
-    unset http_proxy
-    unset https_proxy
   fi
   yum install -y epel-release 
-  yum install -y git python-pip gcc-c++ openssl-devel python-devel
+  yum install -y git python-pip gcc-c++ openssl-devel python-devel libffi-devel
   pip install 'docker-py==1.9.0'
 fi
 

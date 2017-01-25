@@ -30,6 +30,7 @@ os_packages:
   - systemd-container
   - ubuntu-restricted-extras
   - virtualenv
+  - whois
   - yubikey-luks
   - yubikey-ksm
   - yubico-piv-tool
