@@ -1,0 +1,31 @@
+#!/bin/bash
+set -eux -o pipefail
+
+USBDISK="${NONE:-$1}"
+
+if [[ "${USER}" == root ]]
+then
+  USER="${SUDO_USER}"
+fi
+
+DISK="/media/${USER}/${USBDISK}"
+echo "Changing Ownership on /media/${USER}/${USBDISK} for user: ${USER}"
+
+
+if [[ -d "${DISK}" ]]
+then
+  cd "${DISK}"
+  if [[ $(pwd) == ${DISK} ]]
+  then
+    echo "Changing"
+    chown -R ${USER} "${DISK}"
+    exit
+  else
+    echo "Dont trick me with bad path"
+    exit 2
+  fi
+else
+  echo "Disk not found"
+  exit 2
+fi
+
