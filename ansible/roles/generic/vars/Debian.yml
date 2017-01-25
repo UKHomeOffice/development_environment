@@ -4,6 +4,7 @@ os_packages:
   - apparmor-utils
   - apt-transport-https
   - bind9utils
+  - dnsutils
   - gnupg-pkcs11-scd
   - iwatch
   - iptables-persistent
