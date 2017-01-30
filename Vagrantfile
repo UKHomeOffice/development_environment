@@ -116,8 +116,8 @@ Vagrant.configure("2") do |config|
       v.customize ["modifyvm", :id, "--clipboard", "bidirectional"]
     end
     pxe.vm.provision "shell" do |s|
-      s.inline = "/bin/bash /vagrant/pxe_files/configure-pxe-server.sh"
-      s.args = ""
+      s.inline = "PROXY=$1/bin/bash /vagrant/pxe_files/configure-pxe-server.sh"
+      s.args = "#{ENV['PROXY']}"
     end
   end
 end

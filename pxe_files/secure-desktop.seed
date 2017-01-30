@@ -39,7 +39,7 @@ d-i mirror/http/directory                                   string      /ubuntu
 d-i time/zone                                               string      Europe/London 
 d-i clock-setup/utc                                         boolean     false
 d-i clock-setup/ntp                                         boolean     true
-d-i mirror/http/proxy                                       string      http://192.168.87.254:3142/
+d-i mirror/http/proxy                                       string      http://PROXY:3142/
 
 #housekeeping
 popularity-contest popularity-contest/participate           boolean     false

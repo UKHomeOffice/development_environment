@@ -3,18 +3,64 @@
 set -euxv -o pipefail
 
 export VAGRANT="/vagrant"
-export PROXY=${PROXY:-192.168.87.250}
 
-> /etc/apt/apt.conf
 
-echo "Installing packages for pxe server"
-systemctl stop apt-daily.service
+PROXY=${PROXY:-}
 
-echo "grub-pc hold" |sudo dpkg --set-selections
+if [[ ! -z ${PROXY} ]]
+then
+  if [[ ${PROXY} == */* ]]
+  then
+    PROXY=$(echo ${PROXY} | awk -F'/' '{print $1}')
+    echo "Proxy is set to: ${PROXY}"
+  fi
+fi
 
-apt update
-apt-get upgrade -y
-apt-get install -fy dnsmasq nginx iptables-persistent apt-cacher-ng
+if [[ -f /etc/os-release ]]
+then
+  OS=$(cat /etc/os-release|sed -e 's/"//'|grep ID_LIKE|awk -F '=' '{print $2}'|awk '{print $1}')
+elif [[ -f /etc/redhat-release ]]
+then
+  OS=$(cat /etc/redhat-release | awk '{print tolower($1)}')
+else
+  echo "OS Unknown"
+  exit 2
+fi
+
+if [[ ${OS} == "debian" ]]
+then
+  systemctl stop apt-daily.service
+  if [[ ! -z ${PROXY} ]]
+  then
+    echo "Setting Proxy to: ${PROXY}"
+    echo "Acquire::http::Proxy \"http://${PROXY}:3142/\";" > /etc/apt/apt.conf
+    echo "Acquire::http::Proxy::apt.dockerproject.org \"DIRECT\";" > /etc/apt/apt.conf.d/01_docker_proxy.conf
+    echo "Acquire::http::Proxy::packagecloud.io \"DIRECT\";" > /etc/apt/apt.conf.d/02_packagecloud_proxy.conf
+    export http_proxy=${PROXY}:3128
+    mkdir -p /root/.pip
+    echo "[global]\nindex-url = http://${PROXY}:3141/pypi/\n--trusted-host http://${PROXY}:3141\n\n[search]\nindex = http://${PROXY}:
+3141/pypi" > /root/.pip/pip.conf
+  else
+    unset http_proxy
+    unset https_proxy
+    rm -f /etc/apt/apt.conf
+    rm -f /etc/apt/apt.conf.d/01_docker_proxy.conf
+    rm -f /etc/apt/apt.conf.d/02_packagecloud_proxy.conf
+    rm -rf /root/.pip
+  fi
+  apt update
+  echo "Installing packages for pxe server"
+  echo "grub-pc hold" |sudo dpkg --set-selections
+  echo "grub-legacy-ec2 hold" |sudo dpkg --set-selections
+  apt-get -fy install python-pip git libssl-dev libffi-dev
+  apt-get -fy install dnsmasq nginx
+  dpkg -s iptables-persistent &
+  if [[ $? > 0 ]]
+  then
+    apt-get -fy install iptables-persistent
+  fi
+  apt-get upgrade -y
+fi
 
 #Location for all pxe files
 mkdir -p /srv/tftpboot
@@ -42,7 +88,6 @@ cp -f ${VAGRANT}/pxe_files/txt-network.cfg /srv/tftpboot/ubuntu-installer/amd64/
 #Copy preseed and scripts to html
 cp -f ${VAGRANT}/pxe_files/secure-desktop.seed /tmp/secure-desktop.seed
 echo "Updating late_command for preseed"
-#$tmp/script/setup_preseed_command.sh >> /tmp/secure-desktop.seed
 
 LATE_COMMAND="echo 'Processing scripts'" 
 LATE_COMMAND="$LATE_COMMAND; in-target bash -c 'mkdir -p /opt/firstboot_scripts'"
@@ -58,15 +103,13 @@ LATE_COMMAND="$LATE_COMMAND; in-target bash -c '/opt/firstboot_scripts/desktop-b
 
 echo "d-i preseed/late_command			string $LATE_COMMAND" >> /tmp/secure-desktop.seed
 
-
+sed -i "s/PROXY/${PROXY}/" /tmp/secure-desktop.seed
 cp /tmp/secure-desktop.seed /var/www/html/secure-desktop-nvme0.seed
 cp /tmp/secure-desktop.seed /var/www/html/secure-desktop-sda.seed
-cp /tmp/secure-desktop.seed /var/www/html/secure-desktop-sdb.seed
 
 grep -v 'DISK' /tmp/secure-desktop.seed > /var/www/html/secure-desktop.seed
 sed -i 's/DISK/nvme0n1/' /var/www/html/secure-desktop-nvme0.seed
 sed -i 's/DISK/sda/' /var/www/html/secure-desktop-sda.seed
-sed -i 's/DISK/sdb/' /var/www/html/secure-desktop-sdb.seed
 
 # Copy first boot scripts
 cp -rp ${VAGRANT}/pxe_files/firstboot_scripts /var/www/html/
@@ -81,10 +124,8 @@ echo "Setup ip forwarding and Masquerading"
 echo "net.ipv4.ip_forward=1" >> /etc/sysctl.conf
 sysctl -p
 /sbin/iptables -t nat -A POSTROUTING -o enp0s3 -j MASQUERADE
-#iptables-save > /etc/iptables/rules.v4
 
 systemctl restart dnsmasq
 systemctl restart nginx
-systemctl restart apt-cacher-ng
 
 exit 0
