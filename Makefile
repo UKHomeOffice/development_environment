@@ -33,7 +33,6 @@ awmtest:
 	@PROXY=$(PROXY) AWM=true DESKTOP=true vagrant up ubuntutest --provision
 
 pxe:
-	@vagrant box add ubuntu16.04 ./builds/ubuntu-16.04-amd64-virtualbox.box --force
 	@PROXY=$(PROXY) vagrant up pxe --provision
 
 develop:
@@ -51,6 +50,9 @@ centos6clean:
 
 packerclean:
 	@rm -rf packer_cache/*
+
+pxeclean:
+	@vagrant destroy -f pxe
 
 proxyclean:
 	@vagrant destroy -f proxy

@@ -3,12 +3,17 @@
 set -euxv -o pipefail
 
 export VAGRANT="/vagrant"
-export PROXY=${PROXY:-192.168.87.254}
+export PROXY=${PROXY:-192.168.87.250}
 
 > /etc/apt/apt.conf
 
 echo "Installing packages for pxe server"
-apt-get update
+systemctl stop apt-daily.service
+
+echo "grub-pc hold" |sudo dpkg --set-selections
+
+apt update
+apt-get upgrade -y
 apt-get install -fy dnsmasq nginx iptables-persistent apt-cacher-ng
 
 #Location for all pxe files

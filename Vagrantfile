@@ -96,7 +96,8 @@ Vagrant.configure("2") do |config|
     end
   end
   config.vm.define "pxe" do |pxe|
-    pxe.vm.box = "ubuntu16.04"
+    #pxe.vm.box = "ubuntu16.04"
+    pxe.vm.box = "bento/ubuntu-16.04"
     pxe.vm.network "public_network", ip: "192.168.87.254"
     pxe.ssh.username = "vagrant"
     pxe.ssh.password = "vagrant"
@@ -114,6 +115,9 @@ Vagrant.configure("2") do |config|
       v.customize ["modifyvm", :id, "--accelerate3d", "on"]
       v.customize ["modifyvm", :id, "--clipboard", "bidirectional"]
     end
-    pxe.vm.provision "shell", path: "script/configure-pxe-server.sh"
+    pxe.vm.provision "shell" do |s|
+      s.inline = "/bin/bash /vagrant/pxe_files/configure-pxe-server.sh"
+      s.args = ""
+    end
   end
 end

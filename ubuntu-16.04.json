@@ -3,9 +3,9 @@
     {
       "execute_command": "echo 'vagrant' | sudo -E -S bash '{{.Path}}'",
       "scripts": [
-        "script/vagrant.sh",
-        "script/virtualbox.sh",
-        "script/cleanup.sh"
+        "packer/vagrant.sh",
+        "packer/virtualbox.sh",
+        "packer/cleanup.sh"
       ],
       "type": "shell"
     }
