@@ -203,10 +203,14 @@ fi
   rm -f $crypt_oldpw_file
 
   # Create User
-  echo 'Configure user account'
+  echo 'Configure user / group account'
+  
+  grep -q $username /etc/group || {
+    groupadd -q 999 $username
+  }
 
   grep -q $username /etc/passwd || {
-    useradd $username -c "$fullname" -s /bin/bash -m -G lp,cdrom,audio,video,netdev,adm,lpadmin,sudo
+    useradd $username -c "$fullname" -u 999 -g $username -s /bin/bash -m -G lp,cdrom,audio,video,netdev,adm,lpadmin,sudo
     echo "$username:$password"|chpasswd
   }
 

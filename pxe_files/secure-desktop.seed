@@ -118,7 +118,7 @@ d-i partman-auto/expert_recipe string                         \
         use_filesystem{ }                                     \
         filesystem{ ext4 }                                    \
         .                                                     \
-        5120 50 10240 ext4 $lvmok{ }                          \
+        10240 50 20480 ext4 $lvmok{ }                          \
         mountpoint{ /tmp }                                    \
         lv_name{ tmp }                                        \
         in_vg { vg-workstation }                              \
@@ -141,7 +141,7 @@ d-i partman-auto/expert_recipe string                         \
         filesystem{ ext4 }                                    \
         options/rw{ rw }	    			      \
         .                                                     \
-        5120 50 10240 ext4 $lvmok{ }                          \
+        5120 50 20480 ext4 $lvmok{ }                          \
         mountpoint{ /var/tmp }                                \
         lv_name{ var_tmp }                                    \
         in_vg { vg-workstation }                              \
@@ -174,7 +174,7 @@ d-i partman-auto/expert_recipe string                         \
         filesystem{ ext4 }                                    \
         options/rw{ rw }	    			      \
         .                                                     \
-        20480 50 102400 ext4 $lvmok{ }                        \
+        10240 50 102400 ext4 $lvmok{ }                        \
         mountpoint{ /var/lib/docker }                         \
         lv_name{ var_lib_docker }                             \
         in_vg { vg-workstation }                              \
@@ -184,7 +184,7 @@ d-i partman-auto/expert_recipe string                         \
         filesystem{ ext4 }                                    \
         options/rw{ rw }	    			      \
         .                                                     \
-        20480 50 102400 ext4 $lvmok{ }                        \
+        51200 50 102400 ext4 $lvmok{ }                        \
         mountpoint{ /home }                                   \
         lv_name{ home }                                       \
         in_vg { vg-workstation }                              \
