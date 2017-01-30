@@ -6,14 +6,28 @@ export VAGRANT="/vagrant"
 
 
 PROXY=${PROXY:-}
+PXE=${PXE:-}
 
 if [[ ! -z ${PROXY} ]]
 then
   if [[ ${PROXY} == */* ]]
   then
     PROXY=$(echo ${PROXY} | awk -F'/' '{print $1}')
-    echo "Proxy is set to: ${PROXY}"
+    echo "Proxy Server is set to: ${PROXY}"
+  else
+    echo "Proxy Server is set to: ${PROXY}"
   fi
+else
+  echo "Proxy Server is not set"
+  exit 2
+fi
+
+if [[ ! -z ${PXE} ]]
+then
+  echo "PXE Server is set to: ${PXE}"
+else
+  echo "PXE Server is not set"
+  exit 2
 fi
 
 if [[ -f /etc/os-release ]]
@@ -94,7 +108,7 @@ LATE_COMMAND="$LATE_COMMAND; in-target bash -c 'mkdir -p /opt/firstboot_scripts'
 
 for file in ${VAGRANT}/pxe_files/firstboot_scripts/*
 do
-  LATE_COMMAND="$LATE_COMMAND; in-target bash -c 'export http_proxy="";curl http://${PROXY}/firstboot_scripts/$(basename $file) -o /opt/firstboot_scripts/$(basename $file)'" 
+  LATE_COMMAND="$LATE_COMMAND; in-target bash -c 'export http_proxy="";curl http://${PXE}/firstboot_scripts/$(basename $file) -o /opt/firstboot_scripts/$(basename $file)'" 
 done
 
 #Now add the order to call them in

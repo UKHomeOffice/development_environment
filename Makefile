@@ -1,5 +1,6 @@
 
 PROXY := "192.168.87.250"
+PXE := "192.168.87.254"
 
 export PROXY
 
@@ -33,7 +34,7 @@ awmtest:
 	@PROXY=$(PROXY) AWM=true DESKTOP=true vagrant up ubuntutest --provision
 
 pxe:
-	@PROXY=$(PROXY) vagrant up pxe --provision
+	@PXE=$(PXE) PROXY=$(PROXY) vagrant up pxe --provision
 
 develop:
 	curl https://raw.githubusercontent.com/UKHomeOffice/development_environment/develop/ansible/install.sh | GIT_REF=develop bash
