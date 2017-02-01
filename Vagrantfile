@@ -43,7 +43,7 @@ Vagrant.configure("2") do |config|
       v.customize ["modifyvm", :id, "--clipboard", "bidirectional"]
     end
     centos7test.vm.provision "shell" do |s|
-      s.inline = "PROXY=$1/bin/bash AWM=$2 DESKTOP=$3 /vagrant/ansible/install.sh"
+      s.inline = "PROXY=$1 /bin/bash AWM=$2 DESKTOP=$3 /vagrant/ansible/install.sh"
       s.args = "#{ENV['PROXY']} #{ENV['AWM']} #{ENV['DESKTOP']}"
     end
   end
@@ -67,7 +67,7 @@ Vagrant.configure("2") do |config|
       v.customize ["modifyvm", :id, "--clipboard", "bidirectional"]
     end
     centos6test.vm.provision "shell" do |s|
-      s.inline = "PROXY=$1/bin/bash AWM=$2 DESKTOP=$3 /vagrant/ansible/install.sh"
+      s.inline = "PROXY=$1 /bin/bash AWM=$2 DESKTOP=$3 /vagrant/ansible/install.sh"
       s.args = "#{ENV['PROXY']} #{ENV['AWM']} #{ENV['DESKTOP']}"
     end
   end
@@ -91,12 +91,12 @@ Vagrant.configure("2") do |config|
       v.customize ["modifyvm", :id, "--clipboard", "bidirectional"]
     end
     ubuntutest.vm.provision "shell" do |s|
-      s.inline = "PROXY=$1/bin/bash AWM=$2 DESKTOP=$3 /vagrant/ansible/install.sh"
+      s.inline = "PROXY=$1 /bin/bash AWM=$2 DESKTOP=$3 /vagrant/ansible/install.sh"
       s.args = "#{ENV['PROXY']} #{ENV['AWM']} #{ENV['DESKTOP']}"
     end
   end
   config.vm.define "pxe" do |pxe|
-    pxe.vm.box = "ubuntu16.04"
+    pxe.vm.box = "bento/ubuntu-16.04"
     pxe.vm.network "public_network", ip: "192.168.87.254"
     pxe.ssh.username = "vagrant"
     pxe.ssh.password = "vagrant"
@@ -114,6 +114,9 @@ Vagrant.configure("2") do |config|
       v.customize ["modifyvm", :id, "--accelerate3d", "on"]
       v.customize ["modifyvm", :id, "--clipboard", "bidirectional"]
     end
-    pxe.vm.provision "shell", path: "script/configure-pxe-server.sh"
+    pxe.vm.provision "shell" do |s|
+      s.inline = "PROXY=$1 PXE=$2 /bin/bash /vagrant/pxe_files/configure-pxe-server.sh"
+      s.args = "#{ENV['PROXY']} #{ENV['PXE']}"
+    end
   end
 end

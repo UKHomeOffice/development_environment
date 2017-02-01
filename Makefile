@@ -1,7 +1,6 @@
 
-PROXY := "192.168.87.250"
-
-export PROXY
+export PROXY := "192.168.87.250"
+export PXE := "192.168.87.254"
 
 removeboxes:
 	@vagrant box remove ubuntu16.04
@@ -33,8 +32,7 @@ awmtest:
 	@PROXY=$(PROXY) AWM=true DESKTOP=true vagrant up ubuntutest --provision
 
 pxe:
-	@vagrant box add ubuntu16.04 ./builds/ubuntu-16.04-amd64-virtualbox.box --force
-	@PROXY=$(PROXY) vagrant up pxe --provision
+	@PXE=$(PXE) PROXY=$(PROXY) vagrant up pxe --provision
 
 develop:
 	curl https://raw.githubusercontent.com/UKHomeOffice/development_environment/develop/ansible/install.sh | GIT_REF=develop bash
@@ -51,6 +49,9 @@ centos6clean:
 
 packerclean:
 	@rm -rf packer_cache/*
+
+pxeclean:
+	@vagrant destroy -f pxe
 
 proxyclean:
 	@vagrant destroy -f proxy
