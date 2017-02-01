@@ -1,8 +1,6 @@
 
-PROXY := "192.168.87.250"
-PXE := "192.168.87.254"
-
-export PROXY
+export PROXY := "192.168.87.250"
+export PXE := "192.168.87.254"
 
 removeboxes:
 	@vagrant box remove ubuntu16.04

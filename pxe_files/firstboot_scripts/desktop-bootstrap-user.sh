@@ -206,7 +206,7 @@ fi
   echo 'Configure user / group account'
   
   grep -q $username /etc/group || {
-    groupadd -q 999 $username
+    groupadd -g 999 $username
   }
 
   grep -q $username /etc/passwd || {

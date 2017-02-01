@@ -29,6 +29,25 @@ DESKTOP=${DESKTOP:-true}
 echo "Install Desktop: ${DESKTOP}"
 echo "Installing AWM: ${AWM}"
 
+function delete_proxy {
+unset http_proxy
+unset https_proxy
+rm -rf /root/.pip
+
+if [[ ${OS} == "debian" ]]
+then
+    rm -f /etc/apt/apt.conf
+    rm -f /etc/apt/apt.conf.d/01_docker_proxy.conf
+    rm -f /etc/apt/apt.conf.d/02_packagecloud_proxy.conf
+elif [[ ${OS} == "rhel" ]] || [[ ${OS} == "centos" ]]
+then
+  sed -i -e "/^proxy/d" /etc/yum.conf 
+fi
+}
+
+
+delete_proxy
+
 if [[ ${OS} == "debian" ]]
 then
   systemctl stop apt-daily.service
@@ -41,21 +60,11 @@ then
     export http_proxy=${PROXY}:3128
     mkdir -p /root/.pip
     echo "[global]\nindex-url = http://${PROXY}:3141/pypi/\n--trusted-host http://${PROXY}:3141\n\n[search]\nindex = http://${PROXY}:3141/pypi" > /root/.pip/pip.conf
-  else
-    unset http_proxy
-    unset https_proxy
-    rm -f /etc/apt/apt.conf
-    rm -f /etc/apt/apt.conf.d/01_docker_proxy.conf
-    rm -f /etc/apt/apt.conf.d/02_packagecloud_proxy.conf
-    rm -rf /root/.pip
   fi
   apt-get -y install python-pip git libssl-dev libffi-dev
   pip install 'docker-py==1.9.0'
 elif [[ ${OS} == "rhel" ]] || [[ ${OS} == "centos" ]]
 then
-  sed -i -e "/^proxy/d" /etc/yum.conf 
-  unset http_proxy
-  unset https_proxy
   if [[ ! -z ${PROXY} ]]
   then
     echo "Setting Proxy to: ${PROXY}"
@@ -103,5 +112,7 @@ if [[ ${OS} == "debian" ]]
 then
   systemctl start apt-daily.service
 fi
+
+delete_proxy
 
 exit 0
