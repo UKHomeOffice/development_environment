@@ -1,4 +1,4 @@
 ---
 - src: https://github.com/UKHomeOffice/ansible-base-role.git
-  version: a9a6f33573679210c4b79cbba03937a2d477e7c2
+  version: 104d4dbb11af9347691e3bb28ff249f50a1c5f96
   name: generic
