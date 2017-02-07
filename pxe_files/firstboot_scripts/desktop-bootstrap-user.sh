@@ -205,27 +205,27 @@ fi
   # Create User
   echo 'Configure user / group account'
   
-  grep -q $username /etc/group || {
-    groupadd -g 999 $username
-  }
+  getent group admin
+  if [[ "$?" > 0 ]]
+  then
+    groupadd -g 999 admin
+  fi
 
-  grep -q $username /etc/passwd || {
-    useradd $username -c "$fullname" -u 999 -g $username -s /bin/bash -m -G lp,cdrom,audio,video,netdev,adm,lpadmin,sudo
+  getent passwd "$username"
+  if [[ "$?" > 0 ]]
+  then
+    useradd "$username" -c "$fullname" -u 999 -g admin -s /bin/bash -m -G lp,cdrom,audio,video,netdev,adm,lpadmin,sudo
     echo "$username:$password"|chpasswd
-  }
+  fi
 
 #Remove tempuser
 userdel tempuser
 rm -rf /home/tempuser
 
 #chown home to user
-  chown -R $username /home/$username/
-
-# Install VirtualEnv Python dev and setup ansible
-#su - $username -c "virtualenv python_dev; source python_dev/bin/activate; pip install ansible"
+  chown -R "$username" "/home/$username"
 
 ###### CLEAN UP #####
-
 # finish stage2
   zenity --info --text="User Setup finished, disk encryption password changed as well\nNew Username is: ${username}"
 
