@@ -3,5 +3,5 @@
   version: 1f00f591c9aaeae2d40b31e7f3df0efe0d375e59
   name: generic
 - src: https://github.com/UKHomeOffice/ansible-gui-role.git
-  version: edcded91ec07e2f843df0c539a149175c4fa0f98
+  version: 94d6a1558e09e2b52885d8ee0b5da03a214490a4
   name: gui
