@@ -6,3 +6,4 @@ ssh_max_auth_retries: 6
 
 os_desktop_enable: true
 
+nm_result_active: yes
