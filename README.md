@@ -8,7 +8,7 @@ All modules included here should work as a minimum under xfce4 with either an Ub
 ## Bits on the list to add
 
 * blackbox - Stackexchange
-* DNSMasq 
+* DNSMasq
 * aide - filesystem monitoring
 
 ?? how to require a password for debian single user mode and disable interactive boot mode
@@ -16,7 +16,47 @@ All modules included here should work as a minimum under xfce4 with either an Ub
 
 ## Usage
 
-### Production
+### Setting up build environment
+
+To create an environment that new computers can be PXE booted from a PXE boot server and a proxy server (to speed up subsequent builds) are required. These are started as follows:
+
+```
+make proxycache
+make pxe
+```
+
+Be aware that once the PXE server is up, it runs a DHCP service that may well assign your bridged interface an IP address and default route that it then tries (and fails) to use to connect to the internet. This will cause the builds to fail. To resolve this issue, either set the interface to only be used for IP address within its range or hard set the interface to use the IP address that it has been assigned, but delete the IP of the default gateway.
+
+### Destroying the build environment
+
+To destroy the build environment run the following:
+
+```
+make pxeclean
+make proxyclean
+```
+
+### Running the build
+
+Once the build environment is set up, simply boot your target computer, ensuring the BIOS is set to boot from the network. It should see the DHCP/PXE server and start its build process.
+
+The only manual intervention is to select the build to use (go with the default) and to confirm the hostname (go with the default - it gets changed later anyway).
+
+Once the OS installation is complete, you will be prompted to set up an initial user. NOTE: the user that you create at this stage is the admin user (the only one that can use sudo and su), this is not the user that you should use on a day-to-day basis.
+
+### Adding further users
+
+As the admin user, you can create further standard users with the `useradd` command. Further disk encryption passwords can be set up as follows:
+
+`cryptsetup luksAddKey /dev/xxxx`
+
+Where `/dev/xxxx` is the encrypted partition for your system.
+
+### Completing the build
+
+Once the initial configuration is complete, run one of the following as root (via sudo) to harden the server and add further packages:
+
+#### Production
 
 To bootstrap this job please run:
 
@@ -24,7 +64,7 @@ To bootstrap this job please run:
 curl https://raw.githubusercontent.com/UKHomeOffice/development_environment/master/ansible/install.sh | bash
 ```
 
-### Development
+#### Development
 
 This will install the latest tagged release, if you are developing and need a development version (not to be used on live machines but within Vagrant or test boxes) then you can run the following to pull and built the lastest development release:
 
@@ -39,17 +79,3 @@ If you also want to install awesome-wm then run the following (this method is su
 export GIT_REF=develop
 curl https://raw.githubusercontent.com/UKHomeOffice/development_environment/${GIT_REF}/ansible/install.sh | AWM=true bash
 ```
-
-### Setting up the proxy
-There is a proxy server which is required for use by the PXE server and is also use for development to cache files both for Ubuntu and CentOS releases. The proxy server is based on an Ubuntu 16.04 Virtual Box guest, to run this do:
-
-```
-make proxycache
-```
-
-To destroy the cache you can do:
-
-```
-make proxyclean
-```
-
