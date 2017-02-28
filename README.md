@@ -18,14 +18,14 @@ All modules included here should work as a minimum under xfce4 with either an Ub
 
 ### Setting up build environment
 
-To create an environment that new computers can be PXE booted from. A PXE boot server and a proxy server (to speed up subsequent builds) are required. These are started as follows:
+To create an environment that new computers can be PXE booted from a PXE boot server and a proxy server (to speed up subsequent builds) are required. These are started as follows:
 
 ```
 make proxycache
 make pxe
 ```
 
-Be aware that once the PXE server is up, it runs a DHCP service that may well assign your cabled interface an IP address and default route that it then tries (and fails) to use to connect to the internet. This will cause the builds to fail. To resolve this issue, either set the interface to only be used for IP address within its range or hard set the interface to use the IP address that it has been assigned, but default the IP of the default gateway.
+Be aware that once the PXE server is up, it runs a DHCP service that may well assign your bridged interface an IP address and default route that it then tries (and fails) to use to connect to the internet. This will cause the builds to fail. To resolve this issue, either set the interface to only be used for IP address within its range or hard set the interface to use the IP address that it has been assigned, but delete the IP of the default gateway.
 
 ### Destroying the build environment
 
@@ -42,19 +42,19 @@ Once the build environment is set up, simply boot your target computer, ensuring
 
 The only manual intervention is to select the build to use (go with the default) and to confirm the hostname (go with the default - it gets changed later anyway).
 
-Once the OS installation is complete, you will be prompted to set up an initial user. NOTE: the user that you create at this stage is the admin user (the only one that can use sudo and su), this is NOT the user that you should use on a day-to-day basis.
+Once the OS installation is complete, you will be prompted to set up an initial user. NOTE: the user that you create at this stage is the admin user (the only one that can use sudo and su), this is not the user that you should use on a day-to-day basis.
 
 ### Adding further users
 
 As the admin user, you can create further standard users with the `useradd` command. Further disk encryption passwords can be set up as follows:
 
-`cryptsetup luksAddKey /dev/sda5`
+`cryptsetup luksAddKey /dev/xxxx`
 
-Where `/dev/sda5` is the correct encrypted partition for your system.
+Where `/dev/xxxx` is the encrypted partition for your system.
 
 ### Completing the build
 
-Once the initial configuration is complete, run one of the following as root (via sudo) to harden the server and add packages:
+Once the initial configuration is complete, run one of the following as root (via sudo) to harden the server and add further packages:
 
 #### Production
 
