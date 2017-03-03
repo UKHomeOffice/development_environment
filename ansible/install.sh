@@ -61,6 +61,7 @@ then
     mkdir -p /root/.pip
     echo "[global]\nindex-url = http://${PROXY}:3141/pypi/\n--trusted-host http://${PROXY}:3141\n\n[search]\nindex = http://${PROXY}:3141/pypi" > /root/.pip/pip.conf
   fi
+  apt-mark hold linux-image-generic linux-headers-generic
   apt-get -y install python-pip git libssl-dev libffi-dev
   pip install 'docker-py==1.9.0'
 elif [[ ${OS} == "rhel" ]] || [[ ${OS} == "centos" ]]
