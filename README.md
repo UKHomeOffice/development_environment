@@ -4,6 +4,10 @@ These ansible scripts are free to use and follow where possible best practice gu
 
 All modules included here should work as a minimum under xfce4 with either an Ubuntu or RedHat/CentOS base image. For Ubuntu the compatability checks start at 16.04 where as for RedHat/CentOS it also supports 6.7 along with 7 and above however, continuing support for 6.7 is not required so long as the module checks to only install on OS's of a higher version.
 
+# FAQ
+
+Some questions answere [here](./FAQ.md)
+
 
 ## Bits on the list to add
 
