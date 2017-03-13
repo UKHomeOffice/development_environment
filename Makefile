@@ -11,6 +11,12 @@ removeboxes:
 proxycache:
 	@vagrant up proxy --provision
 
+proxycacheSSH:
+	@vagrant ssh proxy -c "touch /tmp/testing; tail -f /tmp/testing"
+
+proxycachehalt:
+	@vagrant halt proxy
+
 box:
 	@PROXY="$(PROXY)" sed "s|PROXY|$(PROXY):3142|g" http/preseed.cfg.orig > http/preseed.cfg
 	@packer build -on-error=abort -force ubuntu-16.04.json
@@ -33,6 +39,12 @@ awmtest:
 
 pxe:
 	@PXE=$(PXE) PROXY=$(PROXY) vagrant up pxe --provision
+
+pxeSSH: 
+	@vagrant ssh pxe -c "touch /tmp/testing; tail -f /tmp/testing"
+
+pxehalt: 
+	@vagrant halt pxe
 
 develop:
 	curl https://raw.githubusercontent.com/UKHomeOffice/development_environment/develop/ansible/install.sh | GIT_REF=develop bash

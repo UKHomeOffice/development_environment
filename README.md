@@ -82,4 +82,25 @@ If you also want to install awesome-wm then run the following (this method is su
 ```
 export GIT_REF=develop
 curl https://raw.githubusercontent.com/UKHomeOffice/development_environment/${GIT_REF}/ansible/install.sh | AWM=true bash
+
+
+#### Vagrantfile
+
+The Vagrantfile has two lines commented out for setting the proxy and pxe public networks which includes the assignment of a network bridge similar to the following:
+
+```
+proxy.vm.network "public_network", ip: "ip_value", bridge: networks["network_bridge_value"]
+```
+
+These lines have been added to provide the option of running the vagrant up commands of both the pxe and proxy servers to run without human intervention of entering which network bridge to use. These lines are currently commented out to prevent any interference with existing users. However, if uncommented and used instead of the existing vm.network lines, then the network bridge value should be placed into a yaml file similar to the following:
+
+```
+network_bridge: 'network_bridge_value'
+```
+
+and the Vagrantfile will need to specify the location of the yaml file for it to read:
+
+```
+networks = YAML.load_file('location/network.yaml')
+
 ```
