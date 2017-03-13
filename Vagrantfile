@@ -1,7 +1,11 @@
+require 'yaml'
+networks = YAML.load_file('network.yaml')
+
 Vagrant.configure("2") do |config|
   config.vm.define "proxy" do |proxy|
     proxy.vm.box = "bento/ubuntu-16.04"
     proxy.vm.network "public_network", ip: "192.168.87.250"
+    #proxy.vm.network "public_network", ip: "192.168.87.250", bridge: networks["network_bridge"]
     proxy.ssh.username = "vagrant"
     proxy.ssh.password = "vagrant"
     proxy.ssh.insert_key = true
@@ -98,6 +102,7 @@ Vagrant.configure("2") do |config|
   config.vm.define "pxe" do |pxe|
     pxe.vm.box = "bento/ubuntu-16.04"
     pxe.vm.network "public_network", ip: "192.168.87.254"
+    #pxe.vm.network "public_network", ip: "192.168.87.254", bridge: networks["network_bridge"]
     pxe.ssh.username = "vagrant"
     pxe.ssh.password = "vagrant"
     pxe.ssh.insert_key = true
