@@ -5,6 +5,7 @@
     - vars.yml
   roles:
     - { role: generic }
+    - { role: gui }
     - { role: fstab }
     - { role: os-hardening,
         os_desktop_enable: true,
