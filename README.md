@@ -104,3 +104,43 @@ and the Vagrantfile will need to specify the location of the yaml file for it to
 networks = YAML.load_file('location/network.yaml')
 
 ```
+
+
+####Systemd
+
+The directory systemd of this repo contains systemd unit files for the proxy and pxe servers. The files enable both servers to be started at system boot and halted at system shutdown. If the servers are interrupted unexpectedly, the untis will try to restart the servers. 
+
+Both unit files use the Makefile in this repo to run commands for starting and stopping the VM servers. An SSH command is also used to provide a continuous way of keeping each VM up and running after they have been successfully provisioned. This is needed because once the VM has been provisioned, systemd thinks that the process has completed successfully and no longer requires the process to be running and therefore begins to shutdown the VM. The SSH runs a tail command within an empty file on each of the servers in a continuous loop until the server is shutdown. 
+
+If running an ubuntu host machine, these files should be placed into the following location:
+
+```
+/etc/systemd/system
+```
+
+Once added, the units need to be started with the following commands:
+
+``` 
+systemctl enable proxy-vbox-vm.service
+
+systemctl enable pxe-vbox-vm.service
+``` 
+
+To check whether the units are running, run the following commands:
+
+```
+systemctl status proxy-vbox-vm.service
+
+systemctl status pxe-vbox-vm.service
+```
+
+If you make changes to the unit files, then a daemon re-load is required to reload the systemd manager configuration and recreate the dependency tree;
+
+```
+systemctl daemon-reload
+
+systemctl restart name_of_unit_service_changed
+```
+
+
+
