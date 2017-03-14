@@ -1,0 +1,20 @@
+[Unit]
+Description=Proxy VBox Virtual Machine
+Requires=systemd-modules-load.service
+After=systemd-modules-load.service
+Before=shutdown.target restart.target
+
+[Service]
+Environment=REPO=$home_path/development_environment/
+User=$user
+Group=$group
+ExecStartPre=/bin/bash -c "make proxycache -C ${REPO}"
+ExecStart=/bin/bash -c "make proxycacheSSH -C ${REPO}"
+ExecStop=/bin/bash -c "make proxycachedown -C ${REPO}"
+TimeoutStartSec=infinity
+TimeoutStopSec=60
+Restart=on-failure
+RestartSec=60
+
+[Install]
+WantedBy=multi-user.target
