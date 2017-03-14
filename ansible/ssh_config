@@ -1,0 +1,6 @@
+Host ip-10-0-1-2*.eu-west-1.compute.internal
+  ProxyCommand          ssh -q -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i ~/.ssh/aws.pem -A ec2-user@JUMPBOX nc %h %p
+  StrictHostKeyChecking no
+  UserKnownHostsFile    /dev/null
+  User                  centos
+  IdentityFile          ~/.ssh/aws.pem

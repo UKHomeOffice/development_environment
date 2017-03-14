@@ -1,0 +1,9 @@
+---
+# SSH Overrides
+ssh_server_password_login: true
+sftp_enabled: true
+ssh_max_auth_retries: 6
+
+os_desktop_enable: true
+
+nm_result_active: yes
