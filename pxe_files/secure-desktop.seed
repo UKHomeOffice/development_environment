@@ -70,8 +70,9 @@ d-i apt-setup/security_path                                 string      /ubuntu
 tasksel tasksel/first                                       multiselect ubuntu-desktop 
 d-i pkgsel/include                                          string      \
     ubuntu-desktop,metacity,nvidia-current,vim,apparmor-profiles,apparmor-utils,iptables-persistent
-d-i pkgsel/upgrade                                          select      safe-upgrade 
-d-i pkgsel/update-policy                                    select      unattended-upgrades
+d-i pkgsel/upgrade                                          select      safe-upgrade
+d-i pkgsel/upgrade                                          select      none 
+d-i pkgsel/update-policy                                    select      unattended-upgrades 
 d-i pkgsel/updatedb                                         boolean     true
 
 # disk partitioning
