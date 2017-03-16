@@ -115,6 +115,14 @@ done
 LATE_COMMAND="$LATE_COMMAND; in-target bash -c 'chmod +x /opt/firstboot_scripts/*.sh'"
 LATE_COMMAND="$LATE_COMMAND; in-target bash -c '/opt/firstboot_scripts/desktop-bootstrap.sh'"
 
+#Modify swap file size
+LATE_COMMAND="$LATE_COMMAND; in-target bash -c 'swapoff /dev/vg-workstation/swap'"
+LATE_COMMAND="$LATE_COMMAND; in-target bash -c 'lvremove -y /dev/vg-workstation/swap'"
+LATE_COMMAND="$LATE_COMMAND; in-target bash -c 'lvcreate -L 4G -n swap vg-workstation'"
+LATE_COMMAND="$LATE_COMMAND; in-target bash -c 'dd if=/dev/zero of=/dev/vg-workstation/swap bs=1M count=4096'"
+LATE_COMMAND="$LATE_COMMAND; in-target bash -c 'mkswap /dev/vg-workstation/swap'"
+LATE_COMMAND="$LATE_COMMAND; in-target bash -c 'swapon /dev/vg-workstation/swap'"
+
 echo "d-i preseed/late_command			string $LATE_COMMAND" >> /tmp/secure-desktop.seed
 
 sed -i "s/PROXY/${PROXY}/" /tmp/secure-desktop.seed

@@ -201,6 +201,12 @@ d-i partman-auto/expert_recipe string                         \
         in_vg { vg-workstation }                              \
         method{ swap }                                        \
         format{ }                                             \
+        .                                                     \
+	1 60 1 linux-swap $lvmok{ }                           \
+        lv_name{ free-space }                                 \
+        in_vg { vg-workstation }                              \
+        method{ swap }                                        \
+        format{ }                                             \
         .
 
 # grub boot loader
