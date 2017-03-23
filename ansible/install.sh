@@ -114,6 +114,10 @@ then
   systemctl start apt-daily.service
 fi
 
+#Writing the date and version of the ansible run to /etc/issue for easy debugging/ version management later
+DATE=`date +%Y-%m-%d:%H:%M:%S`
+echo "Ansible provisioning date - ${DATE} Git version - ${GIT_REF}" >> /etc/issue
+
 delete_proxy
 
 exit 0
