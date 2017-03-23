@@ -115,7 +115,7 @@ then
 fi
 
 #Writing the date and version of the ansible run to /etc/issue for easy debugging/ version management later
-DATE=`date +%Y-%m-%d %H:%M:%S`
+DATE=`date +%Y-%m-%d_%H:%M:%S`
 echo "Ansible Provisioning Date - ${DATE} Git Version - ${GIT_REF}" >> /etc/issue
 echo "Writing the Time and Date (${DATE}) as well as the version (${GIT_REF}) to /etc/issue"
 
