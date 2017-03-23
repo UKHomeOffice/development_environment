@@ -34,4 +34,8 @@
         when: "{{ os_desktop_enable }}" }
     - { role: chrome,
         when: "{{ os_desktop_enable }}" }
+    - { role: displayLinkDriver,
+        when: "{{ os_desktop_enable }}" }
+    - { role: wifi-fix,
+        when: "{{ os_desktop_enable }}" }
     - { role: clamav }
