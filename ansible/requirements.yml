@@ -1,7 +1,7 @@
 ---
 - src: https://github.com/UKHomeOffice/ansible-base-role.git
-  version: cbad80e366ffc4a80ebd9c0324bc5b4fa865994a
+  version: 83d407074c402d5fabc17def704b13be057a950e
   name: generic
 - src: https://github.com/UKHomeOffice/ansible-gui-role.git
-  version: e3213063e52b4c69ddad687436e268e9479206ee
+  version: 5992d4cd9d27f2ab62e51459ae96b16bee0c1a72
   name: gui
