@@ -1,4 +1,9 @@
 #!/bin/bash
+
+chown -R hduser:hduser .
+find /home/hduser/ -type d -exec chmod 750 {} +
+find /home/hduser/ -type f -exec chmod 640 {} +
+
 set -euxo pipefail
 
 PROXY=${PROXY:-}
