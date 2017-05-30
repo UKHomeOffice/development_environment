@@ -109,9 +109,9 @@ else
   if [[ ${CHROOT}=1 ]]
   then 
     ansible-playbook -i hostfile -v site.yml -e awesomewm=${AWM} -e os_desktop_enable=${DESKTOP} --skip-tags "service"
-  fi
   else
   ansible-playbook -i hostfile -v site.yml -e awesomewm=${AWM} -e os_desktop_enable=${DESKTOP}
+  fi
 fi
 
 if [[ ${OS} == "debian" ]]
