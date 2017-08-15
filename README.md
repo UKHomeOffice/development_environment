@@ -82,7 +82,7 @@ If you also want to install awesome-wm then run the following (this method is su
 ```
 export GIT_REF=develop
 curl https://raw.githubusercontent.com/UKHomeOffice/development_environment/${GIT_REF}/ansible/install.sh | AWM=true bash
-
+```
 
 #### Vagrantfile
 
@@ -106,7 +106,7 @@ networks = YAML.load_file('location/network.yaml')
 ```
 
 
-####Systemd
+#### Systemd
 
 The directory systemd of this repo contains systemd unit files for the proxy and pxe servers. The files enable both servers to be started at system boot and halted at system shutdown. If the servers are interrupted unexpectedly, the untis will try to restart the servers. 
 
