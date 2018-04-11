@@ -8,11 +8,9 @@ export SQUID_USER=proxy
 export DEBIAN_FRONTEND=noninteractive
 
 apt update -y
-apt upgrade -y
+apt install -y squid apt-cacher-ng
 
-apt install -y squid apt-cacher-ng python python-pip
-
-pip install -q -U devpi-server
+cp /vagrant/proxy/apt.conf /etc/apt/apt.conf
 
 /bin/systemctl stop squid
 cp /etc/squid/squid.conf /etc/squid/squid.conf.orig
@@ -22,6 +20,14 @@ cp /vagrant/proxy/squid.conf /etc/squid/squid.conf
 /bin/systemctl start squid
 /bin/systemctl enable apt-cacher-ng
 /bin/systemctl start apt-cacher-ng
+
+apt update -y
+apt upgrade -y
+
+apt install -y python python-pip
+
+pip install -q -U devpi-server
+
 
 cp /vagrant/proxy/devpi.service /lib/systemd/system/
 /bin/systemctl enable devpi.service

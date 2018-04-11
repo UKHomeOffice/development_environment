@@ -1,3 +1,5 @@
+proxy/apt-cacher-ng/
+proxy/squid/
 ansible/roles/os-hardening
 ansible/roles/ssh-hardening
 ansible/roles/iptables

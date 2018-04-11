@@ -6,10 +6,16 @@ Vagrant.configure("2") do |config|
     proxy.vm.box = "bento/ubuntu-16.04"
     proxy.vm.network "public_network", ip: "192.168.87.250"
     #proxy.vm.network "public_network", ip: "192.168.87.250", bridge: networks["network_bridge"]
+    #proxy.vm.network "private_network", ip: "192.168.87.250", virtual__intnet: "pxenet"
+    config.vm.network "forwarded_port", guest: 3128, host: 3128
+    config.vm.network "forwarded_port", guest: 3142, host: 3142
     proxy.ssh.username = "vagrant"
     proxy.ssh.password = "vagrant"
     proxy.ssh.insert_key = true
     proxy.ssh.pty = false
+    proxy.vm.synced_folder "proxy/squid",         "/var/spool/squid/", owner: "proxy", group: "proxy"
+    proxy.vm.synced_folder "proxy/apt-cacher-ng", "/var/cache/apt-cacher-ng/" #, owner: "apt-cacher-ng", group: "apt-cacher-ng"
+
     proxy.vm.provider "virtualbox" do |v|
       v.gui = false
       v.customize ['modifyvm', :id, '--memory', 512]
