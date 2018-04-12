@@ -32,7 +32,7 @@ echo "Installing AWM: ${AWM}"
 function delete_proxy {
 unset http_proxy
 unset https_proxy
-rm -rf /root/.pip
+rm -rf /${USER}/.pip
 
 if [[ ${OS} == "debian" ]]
 then
@@ -58,11 +58,11 @@ then
     echo "Acquire::http::Proxy::apt.dockerproject.org \"DIRECT\";" > /etc/apt/apt.conf.d/01_docker_proxy.conf
     echo "Acquire::http::Proxy::packagecloud.io \"DIRECT\";" > /etc/apt/apt.conf.d/02_packagecloud_proxy.conf
     export http_proxy=${PROXY}:3128
-    mkdir -p /root/.pip
-    echo "[global]\nindex-url = http://${PROXY}:3141/pypi/\n--trusted-host http://${PROXY}:3141\n\n[search]\nindex = http://${PROXY}:3141/pypi" > /root/.pip/pip.conf
+    mkdir -p /${USER}/.pip
+    echo "[global]\nindex-url = http://${PROXY}:3141/pypi/\n--trusted-host http://${PROXY}:3141\n\n[search]\nindex = http://${PROXY}:3141/pypi" > /${USER}/.pip/pip.conf
   fi
   apt-mark hold linux-image-generic linux-headers-generic
-  apt-get -y install python-pip git libssl-dev libffi-dev
+  apt-get -y install python-pip git git-gui libssl-dev libffi-dev
   pip install 'docker-py==1.9.0'
 elif [[ ${OS} == "rhel" ]] || [[ ${OS} == "centos" ]]
 then
@@ -74,17 +74,17 @@ then
     export http_proxy=${PROXY}
   fi
   yum install -y epel-release 
-  yum install -y git python-pip gcc-c++ openssl-devel python-devel libffi-devel
+  yum install -y git git-gui python-pip gcc-c++ openssl-devel python-devel libffi-devel
   pip install 'docker-py==1.9.0'
 fi
 
 pip install --upgrade pip setuptools ansible
 
 # gpg ssl fudge for docker
-mkdir -p /root/.gnupg
-chmod 700 /root/.gnupg
-touch /root/.gnupg/dirmngr_ldapservers.conf
-chmod 600 /root/.gnupg/dirmngr_ldapservers.conf
+mkdir -p /${USER}/.gnupg
+chmod 700 /${USER}/.gnupg
+touch /${USER}/.gnupg/dirmngr_ldapservers.conf
+chmod 600 /${USER}/.gnupg/dirmngr_ldapservers.conf
 
 if [[ -d /vagrant ]]
 then

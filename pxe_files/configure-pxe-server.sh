@@ -52,8 +52,7 @@ then
     echo "Acquire::http::Proxy::packagecloud.io \"DIRECT\";" > /etc/apt/apt.conf.d/02_packagecloud_proxy.conf
     export http_proxy=${PROXY}:3128
     mkdir -p /root/.pip
-    echo "[global]\nindex-url = http://${PROXY}:3141/pypi/\n--trusted-host http://${PROXY}:3141\n\n[search]\nindex = http://${PROXY}:
-3141/pypi" > /root/.pip/pip.conf
+    echo "[global]\nindex-url = http://${PROXY}:3141/pypi/\n--trusted-host http://${PROXY}:3141\n\n[search]\nindex = http://${PROXY}:3141/pypi" > /root/.pip/pip.conf
   else
     unset http_proxy
     unset https_proxy
@@ -62,12 +61,13 @@ then
     rm -f /etc/apt/apt.conf.d/02_packagecloud_proxy.conf
     rm -rf /root/.pip
   fi
-  apt update
+  # rm -rf /var/lib/apt/lists/*
+  apt-get update -y
   echo "Installing packages for pxe server"
   echo "grub-pc hold" |sudo dpkg --set-selections
   echo "grub-legacy-ec2 hold" |sudo dpkg --set-selections
-  apt-get -fy install python-pip git libssl-dev libffi-dev
-  apt-get -fy install dnsmasq nginx
+  apt-get -fy install python-pip git libssl-dev libffi-dev dnsmasq nginx
+  # apt-get -fy install dnsmasq nginx
   dpkg -s iptables-persistent &
   if [[ $? > 0 ]]
   then
