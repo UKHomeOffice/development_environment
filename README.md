@@ -1,3 +1,9 @@
+```UPDATE TO LATEST VERSIONS OF VBOX AND VAGRANT!
+https://www.vagrantup.com/downloads.html
+apt-get install virtualbox-5.2
+```
+
+
 # Generic Secure Development Environment
 
 These ansible scripts are free to use and follow where possible best practice guidence from the security community. Please feel free to fork this repository for your own needs and also submit pull requests to enhance or harden where approptiate.
@@ -25,7 +31,7 @@ Some questions answere [here](./FAQ.md)
 To create an environment that new computers can be PXE booted from a PXE boot server and a proxy server (to speed up subsequent builds) are required. These are started as follows:
 
 ```
-make proxycache
+make proxy
 make pxe
 ```
 

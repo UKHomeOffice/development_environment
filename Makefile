@@ -8,7 +8,7 @@ removeboxes:
 	@vagrant box remove bento/centos-7.3
 	@vagrant box remove bento/centos-6.8
 
-proxycache:
+proxy:
 	@vagrant up proxy --provision
 
 proxycacheSSH:

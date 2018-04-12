@@ -7,6 +7,7 @@ Vagrant.configure("2") do |config|
     proxy.vm.network "public_network", ip: "192.168.87.250"
     #proxy.vm.network "public_network", ip: "192.168.87.250", bridge: networks["network_bridge"]
     #proxy.vm.network "private_network", ip: "192.168.87.250", virtual__intnet: "pxenet"
+    proxy.vm.hostname = "proxy"
     config.vm.network "forwarded_port", guest: 3128, host: 3128
     config.vm.network "forwarded_port", guest: 3142, host: 3142
     proxy.ssh.username = "vagrant"
@@ -30,7 +31,6 @@ Vagrant.configure("2") do |config|
     end
     proxy.vm.provision "shell" do |s|
       s.inline = "/bin/bash /vagrant/proxy/configure-proxy-server.sh"
-      s.args = ""
     end
   end
   config.vm.define "centos7test" do |centos7test|
@@ -109,6 +109,7 @@ Vagrant.configure("2") do |config|
     pxe.vm.box = "bento/ubuntu-16.04"
     pxe.vm.network "public_network", ip: "192.168.87.254"
     #pxe.vm.network "public_network", ip: "192.168.87.254", bridge: networks["network_bridge"]
+    pxe.vm.hostname = "pxe"
     pxe.ssh.username = "vagrant"
     pxe.ssh.password = "vagrant"
     pxe.ssh.insert_key = true
