@@ -31,6 +31,8 @@ make pxe
 
 Be aware that once the PXE server is up, it runs a DHCP service that may well assign your bridged interface an IP address and default route that it then tries (and fails) to use to connect to the internet. This will cause the builds to fail. To resolve this issue, either set the interface to only be used for IP address within its range or hard set the interface to use the IP address that it has been assigned, but delete the IP of the default gateway.
 
+We found that the build of the target machine fails when it is unable to get internet access via the proxy, due to the presence of the usb nic causing the default gateway to point to this wired connection - rather than the wireless connection that it should. The best way we found to overcome this was to go under the Ethernet Connection on the host - Wired settings, click on the settings 'wheel' icon, select ipv4, and check the box that reads "Use this connection only for resources on this network".
+
 ### Destroying the build environment
 
 To destroy the build environment run the following:
@@ -108,9 +110,9 @@ networks = YAML.load_file('location/network.yaml')
 
 #### Systemd
 
-The directory systemd of this repo contains systemd unit files for the proxy and pxe servers. The files enable both servers to be started at system boot and halted at system shutdown. If the servers are interrupted unexpectedly, the untis will try to restart the servers. 
+The directory systemd of this repo contains systemd unit files for the proxy and pxe servers. The files enable both servers to be started at system boot and halted at system shutdown. If the servers are interrupted unexpectedly, the untis will try to restart the servers.
 
-Both unit files use the Makefile in this repo to run commands for starting and stopping the VM servers. An SSH command is also used to provide a continuous way of keeping each VM up and running after they have been successfully provisioned. This is needed because once the VM has been provisioned, systemd thinks that the process has completed successfully and no longer requires the process to be running and therefore begins to shutdown the VM. The SSH runs a tail command within an empty file on each of the servers in a continuous loop until the server is shutdown. 
+Both unit files use the Makefile in this repo to run commands for starting and stopping the VM servers. An SSH command is also used to provide a continuous way of keeping each VM up and running after they have been successfully provisioned. This is needed because once the VM has been provisioned, systemd thinks that the process has completed successfully and no longer requires the process to be running and therefore begins to shutdown the VM. The SSH runs a tail command within an empty file on each of the servers in a continuous loop until the server is shutdown.
 
 If running an ubuntu host machine, these files should be placed into the following location:
 
@@ -120,11 +122,11 @@ If running an ubuntu host machine, these files should be placed into the followi
 
 Once added, the units need to be started with the following commands:
 
-``` 
+```
 systemctl enable proxy-vbox-vm.service
 
 systemctl enable pxe-vbox-vm.service
-``` 
+```
 
 To check whether the units are running, run the following commands:
 
@@ -141,6 +143,3 @@ systemctl daemon-reload
 
 systemctl restart name_of_unit_service_changed
 ```
-
-
-
